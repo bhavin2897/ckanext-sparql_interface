@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 import ckan.plugins as p
-from ckanext.sparql.utils import sparqlQuery as utils_sparqlQuery
+from ckanext.sparql_interface.utils import sparqlQuery as utils_sparqlQuery
 from logging import getLogger
 
 
@@ -38,13 +38,13 @@ def check_is_url(strtocheck):
 
 @helper
 def sparql_endpoint_url():
-    endpointUrl = p.toolkit.config.get('ckanext.sparql.endpoint_url', 'http://dbpedia.org/sparql')
+    endpointUrl = p.toolkit.config.get('ckanext.sparql_interface.endpoint_url', 'http://dbpedia.org/sparql')
     #logger.debug("endpointUrl: " + endpointUrl)
     return endpointUrl
 
 @helper
 def sparql_hide_endpoint_url():
-    hideEndpointUrl = p.toolkit.asbool(p.toolkit.config.get('ckanext.sparql.hide_endpoint_url', 'False'))
+    hideEndpointUrl = p.toolkit.asbool(p.toolkit.config.get('ckanext.sparql_interface.hide_endpoint_url', 'False'))
     #logger.debug("hideEndpointUrl: %s" % hideEndpointUrl)
     return hideEndpointUrl
 

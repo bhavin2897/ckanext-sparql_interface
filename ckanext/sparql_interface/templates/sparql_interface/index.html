@@ -10,15 +10,15 @@
 
 <!-- Sparql base CSS/JS and Jquery -->
 
-<link rel="stylesheet" href="{% url_for_static '/public_sparql/base_styles.css' %}">
-<script src="{% url_for_static '/public_sparql/jquery-1.9.1.min.js' %}"></script>
+<link rel="stylesheet" href="{% url_for_static '/public_sparql_interface/base_styles.css' %}">
+<script src="{% url_for_static '/public_sparql_interface/jquery-1.9.1.min.js' %}"></script>
 
 <!-- Code Mirror CSS/JS -->
 
-<link rel="stylesheet" href="{% url_for_static '/public_sparql/codemirror/lib/codemirror.css' %}">
-<script src="{% url_for_static '/public_sparql/codemirror/lib/codemirror.js' %}"></script>
-<script src="{% url_for_static '/public_sparql/codemirror/lib/mode.sparql.js' %}"></script>
-<link rel="stylesheet" href="{% url_for_static '/public_sparql/codemirror/themes/default.css' %}">
+<link rel="stylesheet" href="{% url_for_static '/public_sparql_interface/codemirror/lib/codemirror.css' %}">
+<script src="{% url_for_static '/public_sparql_interface/codemirror/lib/codemirror.js' %}"></script>
+<script src="{% url_for_static '/public_sparql_interface/codemirror/lib/mode.sparql.js' %}"></script>
+<link rel="stylesheet" href="{% url_for_static '/public_sparql_interface/codemirror/themes/default.css' %}">
     
 {% endblock %}
 
@@ -91,7 +91,7 @@ LIMIT 20
         </div>
         <br>
     	<div id="loading_image" class="span8 offset1">
-			<center><img src="{% url_for_static '/public_sparql/gif-load.gif' %}" alt="Loading"></center>
+			<center><img src="{% url_for_static '/public_sparql_interface/gif-load.gif' %}" alt="Loading"></center>
 			<br>
 			<br>
 			<br>
@@ -112,7 +112,7 @@ LIMIT 20
   
   <!-- Base JS -->
   
-  <script src="{% url_for_static '/public_sparql/base.js' %}"></script>
+  <script src="{% url_for_static '/public_sparql_interface/base.js' %}"></script>
   
   <script type="text/javascript">
   

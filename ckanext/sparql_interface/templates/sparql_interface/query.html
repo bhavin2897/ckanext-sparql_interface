@@ -1,0 +1,46 @@
+{%- block content %}
+        <div>
+            <table class="table table-bordered sparql_table">
+            <caption>SPARQL Results</caption>
+            <thead>
+              <tr>
+                <th style="width:4em;">#</th>
+              {%- set ns = namespace(vars=[]) %}
+              {%- for result in results["head"]["vars"] -%}
+                {%- set fake = ns.vars.append(result) %}
+                <th>{{ ns.vars[loop.index0] }}</th>
+              {%- endfor %}
+              </tr>
+            </thead>
+            <tbody>
+            {%- set counter = 1 %}
+            {%- for result in results["results"]["bindings"] %}
+            {%- set rowloop = loop %}
+              <tr>
+                <td>{{ loop.index }}</td>
+              {%- set celdas={} -%}
+              {% for var in ns.vars -%}
+                {% set datos_celda = result.get(var, None) -%}
+                {% if datos_celda -%}
+                  {% if datos_celda.get('value', None) -%}
+                    {%- set urlschema = h.check_is_url(datos_celda['value']) %}
+                <td>
+                    {% if  urlschema == "http" or urlschema == "https" -%}
+                  <a href="" onClick="view_resource('{{ datos_celda['value'] }}'); return false;">{{ datos_celda['value'] }}</a>
+                    {%- else -%}
+                {{ datos_celda['value'] }}
+                    {%- endif %}
+                </td>
+                  {%- else -%}
+                <td></td>
+                  {% endif -%}
+                {% else %}
+                <td></td>
+                {%- endif -%}
+              {% endfor %}
+              </tr>
+            {%- endfor %}
+            </tbody>
+            </table>
+        </div>
+{% endblock -%}

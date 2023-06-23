@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 08:13+0200\n"
+"POT-Creation-Date: 2023-06-20 15:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
@@ -18,63 +18,63 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ckanext/sparql/templates/sparql/index.html:8
-#: ckanext/sparql/templates/sparql/index.html:34
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:8
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:34
 msgid "Interface Sparql."
 msgstr "Interface Sparql."
 
-#: ckanext/sparql/templates/sparql/index.html:27
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:27
 msgid "Punto Sparql"
 msgstr "Sparql Point"
 
-#: ckanext/sparql/templates/sparql/index.html:39
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:39
 msgid "Editor SPARQL"
 msgstr "SPARQ Editor"
 
-#: ckanext/sparql/templates/sparql/index.html:45
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:45
 msgid "Dirección base del punto Sparql"
 msgstr "Sparql Point Server"
 
-#: ckanext/sparql/templates/sparql/index.html:47
-#: ckanext/sparql/templates/sparql/index.html:49
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:47
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:49
 msgid "Añade la URL del servicio Sparql. Por ejempo:"
 msgstr "Add the Sparql service URL. For Instance:"
 
-#: ckanext/sparql/templates/sparql/index.html:52
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:52
 msgid "Creado usando Code Mirror para la interface"
 msgstr "Created using Code Mirror for the interface"
 
-#: ckanext/sparql/templates/sparql/index.html:58
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:58
 msgid "Añada aquí los prefijos para otros vocabularios que pudieran necesitarse"
 msgstr "Add here other prefixes for vocabularies that are needed"
 
-#: ckanext/sparql/templates/sparql/index.html:68
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:68
 msgid "Enviar consulta"
 msgstr "Submit Query"
 
-#: ckanext/sparql/templates/sparql/index.html:71
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:71
 msgid "Enlaces permanentes"
 msgstr "Permanent links"
 
-#: ckanext/sparql/templates/sparql/index.html:73
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:73
 msgid "Formato JSON"
 msgstr "JSON Format"
 
-#: ckanext/sparql/templates/sparql/index.html:73
-#: ckanext/sparql/templates/sparql/index.html:78
-#: ckanext/sparql/templates/sparql/index.html:83
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:73
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:78
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:83
 msgid "Puede copiar este enlace permanente"
 msgstr "You can copy the permanent link below"
 
-#: ckanext/sparql/templates/sparql/index.html:78
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:78
 msgid "Formato TURTLE"
 msgstr "TURTLE Format"
 
-#: ckanext/sparql/templates/sparql/index.html:83
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:83
 msgid "Formato CSV"
 msgstr "CSV Format"
 
-#: ckanext/sparql/templates/sparql/index.html:88
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:88
 msgid "Enlace permanente a esta Query (para guardar la Query)"
 msgstr "Permanent Link for this Query (To save your Query)"
 
