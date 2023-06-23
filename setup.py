@@ -11,7 +11,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-	name='ckanext-sparql',
+	name='ckanext-sparql_interface',
 	version=version,
 	description="Sparql_Point",
 	long_description=long_description,
@@ -20,7 +20,7 @@ setup(
 	keywords='',
 	author='Jorge Pantoja',
 	author_email='jorgepantojam@gmail.com',
-	url='https://github.com/OpenDataGIS/ckanext_sparql',
+	url='https://github.com/OpenDataGIS/ckanext_sparql_interface',
 	license='AGPL',
 	packages=find_packages(exclude=['ez_setup', 'examples', 'tests']),
 	namespace_packages=['ckanext'],
@@ -31,7 +31,7 @@ setup(
 	],
 	entry_points="""
         [ckan.plugins]
-		sparql = ckanext.sparql.plugin:SparqlPlugin
+		sparql_interface = ckanext.sparql_interface.plugin:SparqlInterfacePlugin
 		[babel.extractors]
 		ckan = ckan.lib.extract:extract_ckan
 	""",

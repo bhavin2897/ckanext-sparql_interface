@@ -1,6 +1,6 @@
 # CKAN Sparql Interface Extension
 
-Note: The ``ckanext-sparql`` extension was tested using ``Virtuoso sparql instances`` such as http://semantic.ckan.net/sparql.
+Note: The ``ckanext-sparql_interface`` extension was tested using ``Virtuoso sparql instances`` such as http://semantic.ckan.net/sparql.
 
 I will try to make it work for other type of sparql instances ;)
 
@@ -23,7 +23,7 @@ May be extended to use ``SPARQLWrapper`` (http://sparql-wrapper.sourceforge.net/
 
 ##Installation
 
-To install ckanext-iepnb:
+To install ckanext-sparql_interface:
 
 1. Activate your CKAN virtual environment, for example:
 
@@ -32,13 +32,13 @@ To install ckanext-iepnb:
 2. Clone the source and install it on the virtualenv
 
     ```
-    git clone https://github.com/OpenDataGIS/ckanext-sparql.git
-    cd ckanext-sparql
+    git clone https://github.com/OpenDataGIS/ckanext-sparql_interface.git
+    cd ckanext-sparql_interface
     pip install -e .
 	pip install -r requirements.txt
     ```
 
-3. Add `sparql` to the `ckan.plugins` setting in your CKAN
+3. Add `sparql_interface` to the `ckan.plugins` setting in your CKAN
    config file (by default the config file is located at
    `/etc/ckan/default/ckan.ini`).
    
@@ -57,22 +57,22 @@ To install ckanext-iepnb:
 
 Go to:
 ::
-	http://[Custom URL]/sparql
+	http://[Custom URL]/sparql_interface/
 
 Querys work in:
 ::
-	http://[Custom URL]/query?query=
+	http://[Custom URL]/sparql_interface/query?query=
 
 To send code through ``http`` to the sparql interface:
 ::
-	http://[Custom URL]/sparql?view_code=
+	http://[Custom URL]/sparql_interface/index?view_code=
 
 ##CONFIGURATION
 
 In your ``ckan.ini`` file set 
 ```ini
-	ckanext.sparql.endpoint_url = <your default endpoint url>    (defaults to http://dbpedia.org/sparql)
-	ckanext.sparql.hide_endpoint_url = (true | false)    (defaults to false)
+	ckanext.sparql_interface.endpoint_url = <your default endpoint url>    (defaults to http://dbpedia.org/sparql)
+	ckanext.sparql_interface.hide_endpoint_url = (true | false)    (defaults to false)
 ```
   
 ##Notes
