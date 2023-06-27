@@ -1,8 +1,7 @@
 # CKAN Sparql Interface Extension
 
-Note: The ``ckanext-sparql_interface`` extension was tested using ``Virtuoso sparql instances`` such as http://semantic.ckan.net/sparql.
-
-I will try to make it work for other type of sparql instances ;)
+Note: The ``ckanext-sparql_interface`` extension was tested using ``Virtuoso sparql instances`` such as http://dbpedia.org/sparql
+and http://datos.gob.es/virtuoso/sparql
 
 - **Version:** 2.0
 - **Status:** Development
@@ -10,7 +9,8 @@ I will try to make it work for other type of sparql instances ;)
 
 ##Description
 
-This is a simple extension, but may be useful for someone that wants to include a Sparql Interface Editor in their CKAN instances. The idea is based on the Sparql Editor of the LODUM project from the University of Munsters Open Data initiative (http://data.uni-muenster.de/php/sparql/).
+This is a simple extension, but may be useful for someone that wants to include a Sparql Interface Editor in their CKAN instances. 
+The idea is based on the Sparql Editor of the LODUM project from the University of Munsters Open Data initiative (http://data.uni-muenster.de/php/sparql/).
 
 ##Requeriments
 
@@ -43,7 +43,7 @@ To install ckanext-sparql_interface:
    `/etc/ckan/default/ckan.ini`).
    
 4. In order to let the English profile work, is absolutely mandatory to make the directory 
-   `/ckan/ckan/public/base/i18n` writable by the ckan user. ¡CKAN WILL NOT START IF
+   `/ckan/ckan/public/base/i18n` writable by the ckan user. CKAN WILL NOT START IF
    YOU DON'T DO SO!
    
 5. Add iepnb specific configuration to the CKAN config file (see below)
@@ -77,14 +77,16 @@ In your ``ckan.ini`` file set
   
 ##Notes
 
-To configure your own custom example query 
+To configure your own custom example query in index.html template 
 ```
-	Line 54, After
+	Line 57, After
 	<textarea id="sparql_code" name="sparql_code"  resize="both">
 	Here replace the query
 	...
 	</textarea>
 ```
+
+To change the default prefixes, edit line 19 in public/ckanext/sparql_interface/public_sparql_interface/base.js
   
 ##Changelog
 
