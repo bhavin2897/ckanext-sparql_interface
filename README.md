@@ -7,6 +7,8 @@ and http://datos.gob.es/virtuoso/sparql
 - **Status:** Development
 - **CKAN Version:** >= 2.9
 
+This version has been evolved from the original 1.01, to made it work with ckan 2.8 and python 3.9
+
 ##Description
 
 This is a simple extension, but may be useful for someone that wants to include a Sparql Interface Editor in their CKAN instances. 
@@ -42,9 +44,9 @@ To install ckanext-sparql_interface:
    config file (by default the config file is located at
    `/etc/ckan/default/ckan.ini`).
    
-4. In order to let the English profile work, is absolutely mandatory to make the directory 
-   `/ckan/ckan/public/base/i18n` writable by the ckan user. CKAN WILL NOT START IF
-   YOU DON'T DO SO!
+4. In order to let the English and other languajes profiles work, it is 
+   absolutely mandatory to make the directory `/ckan/ckan/public/base/i18n`
+   writable by the ckan user. CKAN WILL NOT START IF YOU DON'T DO SO!
    
 5. Add iepnb specific configuration to the CKAN config file (see below)
    
