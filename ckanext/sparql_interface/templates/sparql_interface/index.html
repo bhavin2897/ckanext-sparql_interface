@@ -58,11 +58,15 @@
 #{% trans %}Añada aquí los prefijos para otros vocabularios que pudieran necesitarse{% endtrans %}
 #PREFIX othervocab: <http://...... 
 
-SELECT * 
-WHERE {
-  	?s ?p ?o
-      } 
-LIMIT 20
+SELECT DISTINCT *
+WHERE { 
+    ?TaxonRecord plinian:hasHierarchy ?Taxon . 
+    ?TaxonRecord plinian:TaxonRecordID ?TaxonRecordID . 
+OPTIONAL {
+    ?Taxon darwin:scientificName ?ScientificName
+    }
+} 
+LIMIT 10
 </textarea>
 
         <button id="sparql_btn" class="btn" onclick="call_sparql_point_server();">{{ _('Enviar consulta') }}</button>
