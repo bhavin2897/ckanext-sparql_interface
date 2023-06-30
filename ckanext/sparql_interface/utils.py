@@ -26,8 +26,6 @@ def sparqlQuery(data_structure):
         format="application/json"
     logger.debug("Format: "+format)
     params_query={
-        "default-graph": "",
-        "should-sponge": "soft",
         "query": p.toolkit.request.params.get('query'),
         "debug": "off",
         "timeout": "",
@@ -44,60 +42,66 @@ def sparqlQuery(data_structure):
 
     logger.debug("url: {0}?{1}".format(server, querypart))
 
+    try:
+        temp_result = urllib.request.urlopen("{0}?{1}".format(server, querypart))
+    except urllib.error.HTTPError as excp:
+        logger.debug("Error HTTP al enviar la query: {0}".format(excp) )
+        response=make_response(('Error al contactar con {0}'.format(server),418))
+        return response
 
-    temp_result = urllib.request.urlopen("{0}?{1}".format(server, querypart))
-    temp_response_query = temp_result.read()
-    response_query = temp_response_query.decode("utf-8")
-    logger.debug("response_query: {}".format(response_query))
-
-    if p.toolkit.request.params.get('type_response_query') == 'json': 
-        data=json.loads(response_query, object_pairs_hook=collections.OrderedDict)
-        response = make_response(json.dumps(data, separators=(',',':')))
-        response.content_type = 'application/json'
-        #response.headers['Content-disposition'] = 'attachment; filename=query.json'
-        return response
-        #logger.debug("data: {}".format(data))
-        #return data
-    elif p.toolkit.request.params.get('type_response_query') == 'turtle':
-        response = make_response(response_query)
-        response.content_type = 'text/turtle'
-        return response
-    elif p.toolkit.request.params.get('type_response_query') == 'csv':
-        data=json.loads(response_query, object_pairs_hook=collections.OrderedDict)
-        output = []
-        for result in data["head"]["vars"]:
-            output.append(result+",")
-        output.append("\n")
-        
-        for result in data["results"]["bindings"]:
-            index = 0
-            for attributes, values in result.items():
-                if attributes == data["head"]["vars"][index]:
-                    output.append("\"" + values['value'] + "\"" +',')
-                    index += 1
-                else:
-                    key = 0
-                    for listheader in data["head"]["vars"]:
-                        if listheader != attributes and key>=index:
-                            output.append(',')
-                        elif listheader == attributes:
-                            output.append("\"" + values['value'] + "\"" +',')
-                            index = key+1
-                            break
-                        key += 1
-            output.append("\n")
-        response = make_response("".join(output))
-        response.content_type = 'text/csv'
-        #p.toolkit.response.headers['Content-disposition'] = 'attachment; filename=query.csv'
-        response.charset = "utf-8-sig"
-        return response
-    elif p.toolkit.request.params.get('type_response_query') == 'js':
-        p.toolkit.response.content_type = "application/javascript"   
-        return response_query
-    elif p.toolkit.request.params.get('type_response_query') == 'query':
-        return "data.upf.edu/sparql?view_code=" + p.toolkit.request.params.get('query')
     else:
-        data=json.loads(response_query, object_pairs_hook=collections.OrderedDict)
+        temp_response_query = temp_result.read()
+        response_query = temp_response_query.decode("utf-8")
+        logger.debug("response_query: {}".format(response_query))
+
+        if p.toolkit.request.params.get('type_response_query') == 'json': 
+            data=json.loads(response_query, object_pairs_hook=collections.OrderedDict)
+            response = make_response(json.dumps(data, separators=(',',':')))
+            response.content_type = 'application/json'
+            #response.headers['Content-disposition'] = 'attachment; filename=query.json'
+            return response
+            #logger.debug("data: {}".format(data))
+            #return data
+        elif p.toolkit.request.params.get('type_response_query') == 'turtle':
+            response = make_response(response_query)
+            response.content_type = 'text/turtle'
+            return response
+        elif p.toolkit.request.params.get('type_response_query') == 'csv':
+            data=json.loads(response_query, object_pairs_hook=collections.OrderedDict)
+            output = []
+            for result in data["head"]["vars"]:
+                output.append(result+",")
+            output.append("\n")
+            
+            for result in data["results"]["bindings"]:
+                index = 0
+                for attributes, values in result.items():
+                    if attributes == data["head"]["vars"][index]:
+                        output.append("\"" + values['value'] + "\"" +',')
+                        index += 1
+                    else:
+                        key = 0
+                        for listheader in data["head"]["vars"]:
+                            if listheader != attributes and key>=index:
+                                output.append(',')
+                            elif listheader == attributes:
+                                output.append("\"" + values['value'] + "\"" +',')
+                                index = key+1
+                                break
+                            key += 1
+                output.append("\n")
+            response = make_response("".join(output))
+            response.content_type = 'text/csv'
+            #p.toolkit.response.headers['Content-disposition'] = 'attachment; filename=query.csv'
+            response.charset = "utf-8-sig"
+            return response
+        elif p.toolkit.request.params.get('type_response_query') == 'js':
+            p.toolkit.response.content_type = "application/javascript"   
+            return response_query
+        elif p.toolkit.request.params.get('type_response_query') == 'query':
+            return "data.upf.edu/sparql?view_code=" + p.toolkit.request.params.get('query')
+        else:
+            data=json.loads(response_query, object_pairs_hook=collections.OrderedDict)
         return data
 
 def sparqlQueryold(data_structure):
