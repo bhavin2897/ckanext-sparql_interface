@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-20 15:54+0200\n"
-"PO-Revision-Date: 2023-07-03 10:36+0200\n"
+"PO-Revision-Date: 2023-07-03 10:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: en <LL@li.org>\n"
 "Language: en\n"
@@ -38,7 +38,7 @@ msgstr "SPARQL Endpoint"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:47
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:49
-msgid "Añade la URL del servicio SPARQL. Por ejemplo:"
+msgid "Añade la URL del servicio SPARQL. Por ejempo:"
 msgstr "Add the SPARQL service URL. For Instance:"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:52
@@ -48,6 +48,10 @@ msgstr "Created using Code Mirror for the interface"
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:53
 msgid "Consulta SPARQL"
 msgstr "SPARQL Query"
+
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:53
+msgid "Ejemplos"
+msgstr "Samples"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:58
 msgid "Añada aquí los prefijos para otros vocabularios que pudieran necesitarse"

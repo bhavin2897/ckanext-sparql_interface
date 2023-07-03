@@ -37,7 +37,7 @@ msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:47
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:49
-msgid "Añade la URL del servicio SPARQL. Por ejemplo:"
+msgid "Añade la URL del servicio SPARQL. Por ejempo:"
 msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:52
@@ -46,7 +46,11 @@ msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:53
 msgid "Consulta SPARQL"
-msgstr "SPARQL Query"
+msgstr ""
+
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:53
+msgid "Ejemplos"
+msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:58
 msgid "Añada aquí los prefijos para otros vocabularios que pudieran necesitarse"
