@@ -20,11 +20,11 @@ msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:8
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:34
-msgid "Interface Sparql."
+msgid "Interface SPARQL"
 msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:27
-msgid "Punto Sparql"
+msgid "Punto SPARQL"
 msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:39
@@ -32,17 +32,21 @@ msgid "Editor SPARQL"
 msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:45
-msgid "Dirección base del punto Sparql"
+msgid "Dirección base del punto SPARQL"
 msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:47
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:49
-msgid "Añade la URL del servicio Sparql. Por ejempo:"
+msgid "Añade la URL del servicio SPARQL. Por ejemplo:"
 msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:52
 msgid "Creado usando Code Mirror para la interface"
 msgstr ""
+
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:53
+msgid "Consulta SPARQL"
+msgstr "SPARQL Query"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:58
 msgid "Añada aquí los prefijos para otros vocabularios que pudieran necesitarse"
