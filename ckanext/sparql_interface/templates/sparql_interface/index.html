@@ -42,29 +42,25 @@
         <label class="control-label" for="field-sparql-server">{{ _('Dirección base del punto SPARQL') }}</label>
         <div class="controls">
             <input id="field-sparql-server" type="text" name="sparql-server" value="{{h.sparql_endpoint_url()}}"
-                placeholder="{{ _('Añade la URL del servicio SPARQL. Por ejempo:') }} {{h.sparql_endpoint_url()}}">
+                placeholder="{{ _('Añade la URL del servicio SPARQL. Por ejemplo:') }} {{h.sparql_endpoint_url()}}">
         </div>
+            <i class="icon-exclamation-sign"></i>&nbsp;<small>{{ _('Añade la URL del servicio SPARQL. Por ejemplo:') }} <abbr title="Sparql Point"><a target="_blank" href="http://semantic.ckan.net/sparql">http://semantic.ckan.net/sparql</a></abbr></small>
     </div>
 
+		<i class="icon-comment"></i><small><abbr title="Code Mirror"><a target="_blank" href="http://codemirror.net/">&nbsp;{{ _('Creado usando Code Mirror para la interface') }}</a></abbr></small>
     <br><br>
 
     <div id="test_sparql" class="sparql_hideme"></div>
 
-    <label class="control-label" for="field-sparql-server">{{ _('Consulta SPARQL') }}</label> <abbr
-        title="SPARQL Endpoint"><a target="_blank" href="https://datos.iepnb.es/consultas">({{ _('ejemplos')
-            }})</a></abbr></small>
+    <label class="control-label" for="field-sparql-server">{{ _('Consulta SPARQL') }}</label>
     <textarea id="sparql_code" name="sparql_code" resize="both">
 #{% trans %}Añada aquí los prefijos para otros vocabularios que pudieran necesitarse{% endtrans %}
 #PREFIX othervocab: <http://...... 
 
-SELECT DISTINCT *
+SELECT * 
 WHERE { 
-    ?TaxonRecord plinian:hasHierarchy ?Taxon . 
-    ?TaxonRecord plinian:TaxonRecordID ?TaxonRecordID . 
-OPTIONAL {
-    ?Taxon darwin:scientificName ?ScientificName
+  	?s ?p ?o
     }
-} 
 LIMIT 10
 </textarea>
 

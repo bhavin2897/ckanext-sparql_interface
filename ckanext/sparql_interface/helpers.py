@@ -38,7 +38,7 @@ def check_is_url(strtocheck):
 
 @helper
 def sparql_endpoint_url():
-    endpointUrl = p.toolkit.config.get('ckanext.sparql_interface.endpoint_url', 'https://datos.iepnb.es/sparql')
+    endpointUrl = p.toolkit.config.get('ckanext.sparql_interface.endpoint_url', 'http://dbpedia.org/sparql')
     #logger.debug("endpointUrl: " + endpointUrl)
     return endpointUrl
 

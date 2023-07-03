@@ -56,7 +56,7 @@ To install ckanext-sparql_interface:
 
 In your ``ckan.ini`` file set 
 ```ini
-	ckanext.sparql_interface.endpoint_url = <your default endpoint url>    (defaults to https://datos.iepnb.es/sparql)
+	ckanext.sparql_interface.endpoint_url = <your default endpoint url>    (defaults to http://dbpedia.org/sparql)
 	ckanext.sparql_interface.hide_endpoint_url = (true | false)    (defaults to false)
 ```
   
