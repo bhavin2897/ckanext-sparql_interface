@@ -37,7 +37,7 @@ msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:47
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:49
-msgid "Añade la URL del servicio SPARQL. Por ejempo:"
+msgid "Añade la URL del servicio SPARQL. Por ejemplo:"
 msgstr ""
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:52
