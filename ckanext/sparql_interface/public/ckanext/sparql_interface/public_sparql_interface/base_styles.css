@@ -9,6 +9,7 @@
 	margin-left: 25px;
 	margin-right: 25px;
 	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
 .sparql_link a:hover {
@@ -18,6 +19,14 @@
 #sparql_btn {
 	margin-bottom: 25px;
 	margin-top: 20px;
+	color: #83B62C;
+	border: 1px solid #83B62C !important;
+}
+
+#sparql_btn:hover {
+	cursor:pointer;
+	background-color: #83B62C;
+	color:#f0fcff;
 }
 
 #sparql_results {
@@ -38,6 +47,7 @@
 }
 
 #sparql_link_query {
+	margin-top: 20px;
 }
 
 #sparql_code {
