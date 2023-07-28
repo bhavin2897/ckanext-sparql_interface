@@ -8,41 +8,50 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-20 15:54+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language: en\n"
+"PO-Revision-Date: 2023-07-03 10:42+0200\n"
+"Last-Translator: \n"
 "Language-Team: en <LL@li.org>\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.7.0\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:8
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:34
-msgid "Interface Sparql."
-msgstr "Interface Sparql."
+msgid "Interface SPARQL"
+msgstr "Interface SPARQL"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:27
-msgid "Punto Sparql"
-msgstr "Sparql Point"
+msgid "Punto SPARQL"
+msgstr "SPARQL Endpoint"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:39
 msgid "Editor SPARQL"
-msgstr "SPARQ Editor"
+msgstr "SPARQL Editor"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:45
-msgid "Dirección base del punto Sparql"
-msgstr "Sparql Point Server"
+msgid "Dirección base del punto SPARQL"
+msgstr "SPARQL Endpoint"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:47
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:49
-msgid "Añade la URL del servicio Sparql. Por ejempo:"
-msgstr "Add the Sparql service URL. For Instance:"
+msgid "Añade la URL del servicio SPARQL. Por ejempo:"
+msgstr "Add the SPARQL service URL. For Instance:"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:52
 msgid "Creado usando Code Mirror para la interface"
 msgstr "Created using Code Mirror for the interface"
+
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:53
+msgid "Consulta SPARQL"
+msgstr "SPARQL Query"
+
+#: ckanext/sparql_interface/templates/sparql_interface/index.html:53
+msgid "Ejemplos"
+msgstr "Samples"
 
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:58
 msgid "Añada aquí los prefijos para otros vocabularios que pudieran necesitarse"
@@ -77,4 +86,3 @@ msgstr "CSV Format"
 #: ckanext/sparql_interface/templates/sparql_interface/index.html:88
 msgid "Enlace permanente a esta Query (para guardar la Query)"
 msgstr "Permanent Link for this Query (To save your Query)"
-
