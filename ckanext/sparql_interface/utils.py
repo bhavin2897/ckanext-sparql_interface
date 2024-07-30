@@ -35,12 +35,12 @@ def sparqlQuery(data_structure):
     }
     
     querypart = urllib.parse.urlencode(params_query)
-    logger.debug("querypart: " + querypart)
+    # logger.debug("querypart: " + querypart)
 
     server = p.toolkit.request.params.get('server')
     logger.debug("server: " + server)
 
-    logger.debug("url: {0}?{1}".format(server, querypart))
+    # logger.debug("url: {0}?{1}".format(server, querypart))
 
     try:
         temp_result = urllib.request.urlopen("{0}?{1}".format(server, querypart))
@@ -52,7 +52,7 @@ def sparqlQuery(data_structure):
     else:
         temp_response_query = temp_result.read()
         response_query = temp_response_query.decode("utf-8")
-        logger.debug("response_query: {}".format(response_query))
+        # logger.debug("response_query: {}".format(response_query))
 
         if p.toolkit.request.params.get('type_response_query') == 'json': 
             data=json.loads(response_query, object_pairs_hook=collections.OrderedDict)
@@ -134,14 +134,14 @@ def sparqlQueryold(data_structure):
     }
     
     querypart = urllib.urlencode(params_query)
-    logger.debug("querypart: " + querypart)
+    # logger.debug("querypart: " + querypart)
 
     server = p.toolkit.request.params.get('server')
     logger.debug("server: " + server)
 
     temp_result = urllib2.urlopen(server, querypart)
     response_query = temp_result.read()
-    logger.debug("response_query: " + response_query)
+    # logger.debug("response_query: " + response_query)
     
     if p.toolkit.request.params.get('type_response_query') == 'json': 
         data=json.loads(response_query, object_pairs_hook=collections.OrderedDict)

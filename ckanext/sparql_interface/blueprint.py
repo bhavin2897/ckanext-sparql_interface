@@ -14,11 +14,11 @@ logger = getLogger(__name__)
 sparql = Blueprint(u'sparql_interface', __name__)
 
 
-@sparql.route(u'/sparql_interface')
+@sparql.route(u'/sparql')
 def index():
     return render('sparql_interface/index.html')
 
-@sparql.route(u'/sparql')
+@sparql.route(u'/sparql_interface')
 def old_index():
     return h.redirect_to('sparql_interface.index')
 

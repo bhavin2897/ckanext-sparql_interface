@@ -48,6 +48,6 @@ class SparqlInterfacePlugin(p.SingletonPlugin, DefaultTranslation):
     ## TEMPLATE FUNCTIONS ##
 
     def get_helpers(self):
-        logger.debug('Getting helpers...')
+        #logger.debug('Getting helpers...')
         respuesta=dict(sparql_helpers.all_helpers)
         return respuesta
