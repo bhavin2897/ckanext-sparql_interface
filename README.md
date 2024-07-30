@@ -1,7 +1,8 @@
 # CKAN Sparql Interface Extension
+##### Forked from [OpenDataGIS/ckanext-sparql_interface](https://github.com/OpenDataGIS/ckanext-sparql_interface)
 
-Note: The ``ckanext-sparql_interface`` extension was tested using ``Virtuoso sparql instances`` such as http://dbpedia.org/sparql
-and http://datos.gob.es/virtuoso/sparql
+NOTE: The ``ckanext-sparql_interface`` extension was tested using ``Virtuoso sparql instances``
+Modifying for the compatibility of [NFDI4Chem Search Service](https://search.nfdi4chem.de/)
 
 - **Version:** 2.0
 - **Status:** Development
@@ -11,9 +12,8 @@ This version has been evolved from the original 1.01, to made it work with ckan 
 
 ## Description
 
-This is a simple extension, but may be useful for someone that wants to include a Sparql Interface Editor in their CKAN instances. 
-The idea is based on the [Sparql Editor of the LODUM project from the University of Munsters Open Data initiative](http://data.uni-muenster.de/php/sparql/).
-
+An Extension to include Sparql Interface Editor in the CKAN instances.
+Current Developement on NFDI4Chem Sparql Interface 
 ## Requeriments
 The extension use:
 
@@ -55,7 +55,7 @@ To install ckanext-sparql_interface:
 ## Configuration
 
 In your ``ckan.ini`` file set 
-```ini
+```
 	ckanext.sparql_interface.endpoint_url = <your default endpoint url>    (defaults to http://dbpedia.org/sparql)
 	ckanext.sparql_interface.hide_endpoint_url = (true | false)    (defaults to false)
 ```
@@ -77,7 +77,7 @@ To send code through ``http`` to the sparql interface:
 
 To configure your own custom example query in [`templates/sparql_interface/index.html`](ckanext/sparql_interface/templates/sparql_interface/index.html) template 
 
-```html
+```
 	<!-- Line 57, After-->
 	<textarea id="sparql_code" name="sparql_code"  resize="both">
 	<!-- Here replace the query-->
@@ -86,7 +86,7 @@ To configure your own custom example query in [`templates/sparql_interface/index
 ```
 
 To change the default prefixes, edit `prefixes` in [`public/ckanext/sparql_interface/public_sparql_interface/base.js`](ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base.js)
-```js
+```
 var prefixes = "PREFIX void: <http://rdfs.org/ns/void#> PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX vann: <http://purl.org/vocab/vann/> PREFIX teach: <http://linkedscience.org/teach/ns#>"
 ```
 
@@ -94,7 +94,7 @@ var prefixes = "PREFIX void: <http://rdfs.org/ns/void#> PREFIX geo: <http://www.
 ## Changelog
 
 - Version: 1.01: Fix Bugs 
-- Version: 2.0: Adapted to ckan 2.9 and internacionalized
+- Version: 2.0: Adapted to ckan 2.9 and internationalized
 - Version: 2.0.1: Minor fixes
 
 Example
