@@ -3,33 +3,13 @@ from logging import getLogger
 from ckanext.sparql_interface import blueprint
 from ckan.lib.plugins import DefaultTranslation
 import ckan.plugins as p
-#from SPARQLWrapper import SPARQLWrapper, JSON
 import collections
 import csv
 
-logger = getLogger(__name__)
+log = getLogger(__name__)
 
-### SPARQL QUERY FUNCTIONS ###
-
-## OPTIONAL: NOT USED ##
-'''def sparql_query_SPARQLWrapper(data_structure):
-    c = p.toolkit.c
-    queryString = request.params.get('query')
-    sparql = SPARQLWrapper(request.params.get('server'))
-    sparql.setQuery(queryString)
-    sparql.setReturnFormat(JSON)
-    results = sparql.query().convert()
-    c.sparql_query = queryString
-    return results
-'''
-
-
-### CLASS ###
 
 class SparqlInterfacePlugin(p.SingletonPlugin, DefaultTranslation):
-    
-    #Ckan Stuff
-    
     '''Sparql plugin.'''
 
     p.implements(p.IBlueprint)
@@ -48,6 +28,8 @@ class SparqlInterfacePlugin(p.SingletonPlugin, DefaultTranslation):
     ## TEMPLATE FUNCTIONS ##
 
     def get_helpers(self):
-        #logger.debug('Getting helpers...')
-        respuesta=dict(sparql_helpers.all_helpers)
-        return respuesta
+        # logger.debug('Getting helpers...')
+
+        response = dict(sparql_helpers.all_helpers)
+        log.debug(f'response: {response}')
+        return response

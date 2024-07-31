@@ -4,7 +4,7 @@ from flask import Blueprint, redirect, url_for
 
 from ckan.plugins.toolkit import c, render, request
 import ckan.lib.helpers as h
-from ckanext.sparql_interface.utils import sparqlQuery as utils_sparqlQuery
+from ckanext.sparql_interface.utils import sparql_query_SPARQLWrapper as utils_sparqlQuery
 from flask import Response
 
 from logging import getLogger

@@ -33,7 +33,7 @@
 <header class="sparql_hideme">
     <p>{{ _('SPARQL Endpoint') }}</p>
 </header>
-{% set sdm_tib_covid = 'https://labs.tib.eu/sdm/covid19kg/sparql' %}
+
 <div id="sparql_point_block">
 
     <h1>{% trans %}Editor SPARQL{% endtrans %}</h1>
@@ -41,9 +41,10 @@
    <div class="control-group control-full" {% if h.sparql_hide_endpoint_url() %} style="display:none; " {% endif %}>
 <!--       <label class="control-label" for="field-sparql-server">{{ _('SPARQL Endpoint') }}</label>-->
 <!--       <div class="controls">-->
-       <p> Example queries to test from <a href="{{ sdm_tib_covid }}"> SDM-TIB Knowledge4COVID-19 KG </a> </p>
-       <p> SHOULD BE REMOVED</p>
-           <input id="field-sparql-server" type="hidden" name="sparql-server" value="{{ sdm_tib_covid }}"
+<!--       <p> Example queries to test from <a href="{{ sdm_tib_covid }}"> SDM-TIB Knowledge4COVID-19 KG </a> </p>-->
+       <h4> TEST PURPOSES ONLY</h4>
+       <p> <b> Current SPARQL Server: </b> <a href="{{ h.sparql_endpoint_url() }}">{{ h.sparql_endpoint_url() }} </a> </p>
+           <input id="field-sparql-server" type="hidden" name="sparql-server" value="{{h.sparql_endpoint_url()}}"
                   placeholder="{{ _('Add the URL of the SPARQL service. For example:') }} {{h.sparql_endpoint_url()}}" >
 <!--                  value="{{h.sparql_endpoint_url()}}"-->
    </div>

@@ -1,6 +1,6 @@
 from urllib.parse import urlparse
 import ckan.plugins as p
-from ckanext.sparql_interface.utils import sparqlQuery as utils_sparqlQuery
+from ckanext.sparql_interface.utils import sparql_query_SPARQLWrapper as utils_sparqlQuery
 from logging import getLogger
 
 
@@ -34,6 +34,7 @@ def check_direct_link():
 @helper
 def check_is_url(strtocheck):
     results = urlparse(strtocheck)
+    logger.debug(f'results: {results}')
     return results.scheme
 
 @helper
