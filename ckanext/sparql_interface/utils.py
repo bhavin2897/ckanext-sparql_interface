@@ -51,7 +51,7 @@ def sparql_query_SPARQLWrapper(data_structure):
 
         results = response.convert()
         c.sparql_query = query_string
-        logger.debug(f'Results from Wrapper: {results}')
+        # logger.debug(f'Results from Wrapper: {results}')
         return results
     except Exception as e:
         logger.error(f"Error executing SPARQL query: {e}")

@@ -31,5 +31,5 @@ class SparqlInterfacePlugin(p.SingletonPlugin, DefaultTranslation):
         # logger.debug('Getting helpers...')
 
         response = dict(sparql_helpers.all_helpers)
-        log.debug(f'response: {response}')
+        # log.debug(f'response: {response}')
         return response

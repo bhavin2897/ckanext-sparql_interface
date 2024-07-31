@@ -34,7 +34,7 @@ def check_direct_link():
 @helper
 def check_is_url(strtocheck):
     results = urlparse(strtocheck)
-    logger.debug(f'results: {results}')
+    # logger.debug(f'results: {results}')
     return results.scheme
 
 @helper
