@@ -20,7 +20,13 @@
 <script src="{% url_for_static '/public_sparql_interface/codemirror/lib/mode.sparql.js' %}"></script>
 <link rel="stylesheet" href="{% url_for_static '/public_sparql_interface/codemirror/themes/default.css' %}">
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/sparql/sparql.min.js"></script>-->
+
+
 {% endblock %}
+
 
 {% block breadcrumb_content %}
 
@@ -34,45 +40,62 @@
     <p>{{ _('SPARQL Endpoint') }}</p>
 </header>
 
+
 <div id="sparql_point_block">
-
-    <h1>{% trans %}Editor SPARQL{% endtrans %}</h1>
-
-   <div class="control-group control-full" {% if h.sparql_hide_endpoint_url() %} style="display:none; " {% endif %}>
-<!--       <label class="control-label" for="field-sparql-server">{{ _('SPARQL Endpoint') }}</label>-->
-<!--       <div class="controls">-->
-<!--       <p> Example queries to test from <a href="{{ sdm_tib_covid }}"> SDM-TIB Knowledge4COVID-19 KG </a> </p>-->
+    <h1> SPARQL Editor  </h1>
+<div class="control-group control-full" {% if h.sparql_hide_endpoint_url() %} style="display:none; " {% endif %}>
        <h4> TEST PURPOSES ONLY</h4>
        <p> <b> Current SPARQL Server: </b> <a href="{{ h.sparql_endpoint_url() }}">{{ h.sparql_endpoint_url() }} </a> </p>
            <input id="field-sparql-server" type="hidden" name="sparql-server" value="{{h.sparql_endpoint_url()}}"
                   placeholder="{{ _('Add the URL of the SPARQL service. For example:') }} {{h.sparql_endpoint_url()}}" >
-<!--                  value="{{h.sparql_endpoint_url()}}"-->
    </div>
 
-<br><br>
+    <br>
 
-   <div id="test_sparql" class="sparql_hideme"></div>
+    <h4> Sample queries </h4>
+<button type="submit" name="" id="title_with_inchi">
+    Title & Description
+</button>
+    <button type="submit" id="fed_query_wiki_data">
+        Federated Query with Wiki Data
+    </button>
 
-    <label class="control-label" for="field-sparql-server">{{ _('SPARQL Query') }}</label> <abbr
+    <br>
+<label class="control-label" for="field-sparql-server">{{ _('SPARQL Query') }}</label> <abbr
         title="SPARQL Endpoint"></abbr>
+    <br>
+    <br>
+    <div class="container mt-3">
+    <div class="d-flex justify-content-start mb-2">
+        <div id="tabs_container" class="btn-group me-2" role="group"></div>
+        <button id="add_tab" class="btn btn-outline-success">+</button>
+    </div>
 
+    <div id="editors_container">
 
+        <!-- Textarea to be used as a starting point for CodeMirror instances -->
 
-    <textarea id="sparql_code" name="sparql_code" resize="both">
+        <textarea id="sparql_code" style="display:none;">
 
-#{% trans %} Add here other prefixes for vocabularies that are needed {% endtrans %}
-#PREFIX other vocab: <http://......
+    #{% trans %} Add here other prefixes for vocabularies that are needed {% endtrans %}
+    #PREFIX other vocab: <http://......
 
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-SELECT * WHERE {
-  ?sub ?pred ?obj .
-} LIMIT 100
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    SELECT * WHERE {
+      ?sub ?pred ?obj .
+    } LIMIT 100
+        </textarea>
 
+<textarea id="sparql_code_2" style="display:none">
+    # Add text here
 </textarea>
+     {% snippet 'sparql_interface/snippets/sample_query.html' %}
 
+    </div>
+</div>
 
-    <button id="sparql_btn" class="btn" onclick="call_sparql_point_server();">{{ _('Submit Query') }}</button>
+<button id="sparql_btn" class="btn" onclick="call_sparql_point_server();">{{ _('Submit Query') }}</button>
 
     <div id="sparql_link_query" class="control-group control-full">
         <label class="control-label" for="field-link-sparql-server-query">{{ _('Permanent links') }}</label>
@@ -123,29 +146,27 @@ SELECT * WHERE {
     <div id="sparql_results"></div>
 
 </div>
-
 {% endblock %}
 
-{% block secondary %}{% endblock %}
+
 
 {% block scripts %}
 {{ super() }}
 
 {% set current_url = request.environ.CKAN_CURRENT_URL %}
 
-<!-- Base JS -->
-
-<script src="{% url_for_static '/public_sparql_interface/base.js' %}"></script>
+<script src="{% url_for_static '/public_sparql_interface/base_ts_tab.js' %}"></script>
 
 <script type="text/javascript">
-
-    $(document).ready(function () {
+$(document).ready(function () {
         var sparql_query = GetURLParameter('view_code');
         if (sparql_query != "" && sparql_query != undefined) {
             editor.setValue(decodeURIComponent((sparql_query + '').replace(/\+/g, '%20')));
         }
     });
-
 </script>
 
+
 {% endblock %}
+
+{% block secondary %}{% endblock %}

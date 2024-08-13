@@ -3,7 +3,9 @@ var $ = jQuery.noConflict();
 $('#sparql_results').hide();
 $('#sparql_link_query').hide();
 $('#loading_image').hide();
-		
+
+let editorCount = 1;
+
 // The CodeMirror stuff
 var editor = CodeMirror.fromTextArea(document.getElementById("sparql_code"), {
   mode: "application/x-sparql-query",
@@ -41,7 +43,7 @@ function call_sparql_point_server() {
     $.ajax({
 		type:'GET', 
 		url: 'sparql_interface/query', 
-		data: {'query' : prefixes + get_sparql_string(), 'server' : $("#field-sparql-server").val(), 'direct_link': 0}, 
+		data: {'query' : prefixes + get_sparql_string(), 'server' : $("#field-sparql-server").val(), 'direct_link': 0},
 		success: function(response) {
         	$('#sparql_results').html(response);
         	        	

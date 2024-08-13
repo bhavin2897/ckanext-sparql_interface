@@ -24,6 +24,7 @@ def old_index():
 
 @sparql.route(u'/query')
 def old_query():
+
     return h.redirect_to('sparql_interface.query_page')
 @sparql.route(u'/sparql_interface/query')
 def query_page():

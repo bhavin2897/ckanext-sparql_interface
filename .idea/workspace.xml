@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7f1d8e39-7a01-4d3b-a222-83f5fdf3a4bd" name="Changes" comment="update README.md for NFDI4Chem">
+    <list default="true" id="7f1d8e39-7a01-4d3b-a222-83f5fdf3a4bd" name="Changes" comment="SparqlWrapper Lib requirements.txt">
+      <change afterPath="$PROJECT_DIR$/ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base_tab.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/index_tab.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/blueprint.py" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/blueprint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/plugin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/plugin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,9 +31,15 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="/etc/ckan/default/ckan.ini" />
+    <property name="last_opened_file_path" value="$USER_HOME$/portfolio/index.html" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/snippet" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -50,7 +64,35 @@
       <option name="project" value="LOCAL" />
       <updated>1722334463806</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Query and display based on SparqlWrapper lib">
+      <created>1722419177089</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722419177089</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Removed logging &amp; code refactoring">
+      <created>1722420890416</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722420890416</updated>
+    </task>
+    <task id="LOCAL-00005" summary="changed: default Sparql Query on editor">
+      <created>1722420933672</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722420933672</updated>
+    </task>
+    <task id="LOCAL-00006" summary="SparqlWrapper Lib requirements.txt">
+      <created>1722421207564</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1722421207564</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -63,10 +105,15 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="nfdi4Chem Search Service update" />
     <MESSAGE value="update README.md for NFDI4Chem" />
-    <option name="LAST_COMMIT_MESSAGE" value="update README.md for NFDI4Chem" />
+    <MESSAGE value="Query and display based on SparqlWrapper lib" />
+    <MESSAGE value="Removed logging &amp; code refactoring" />
+    <MESSAGE value="changed: default Sparql Query on editor" />
+    <MESSAGE value="SparqlWrapper Lib requirements.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="SparqlWrapper Lib requirements.txt" />
   </component>
 </project>

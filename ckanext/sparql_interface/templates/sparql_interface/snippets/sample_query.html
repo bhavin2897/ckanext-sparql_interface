@@ -1,0 +1,101 @@
+
+
+<!--TITLE, Description and inchi as Keyword -->
+
+<textarea id="title_with_inchi_text" style="display: none;">
+    PREFIX void: <http://rdfs.org/ns/void#> PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX vann: <http://purl.org/vocab/vann/> PREFIX teach: <http://linkedscience.org/teach/ns#> PREFIX dcterms: <http://purl.org/dc/terms/> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> PREFIX dcat: <http://www.w3.org/ns/dcat#> PREFIX crsw: <http://courseware.rkbexplorer.com/ontologies/courseware#> PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX aiiso: <http://purl.org/vocab/aiiso/schema#> PREFIX univcat: <http://data.upf.edu/upf/ontologies/universidadcatalana#> PREFIX skos: <http://www.w3.org/2004/02/skos/core#> PREFIX vivo: <http://vivoweb.org/ontology/core#> PREFIX sbench: <http://swat.cse.lehigh.edu/onto/univ-bench.owl#> PREFIX sdmx-attribute: <http://purl.org/linked-data/sdmx/2009/attribute#> PREFIX sdmx-concept: <http://purl.org/linked-data/sdmx/2009/concept#> PREFIX sdmx-code: <http://purl.org/linked-data/sdmx/2009/code#> PREFIX disco: <http://rdf-vocabulary.ddialliance.org/discovery#> PREFIX sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#> PREFIX sdmx-measure: <http://purl.org/linked-data/sdmx/2009/measure#> PREFIX qb: <http://purl.org/linked-data/cube#> PREFIX sdmx: <http://purl.org/linked-data/sdmx#>PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gsp: <http://www.opengis.net/ont/geosparql#>
+PREFIX hydra: <http://www.w3.org/ns/hydra/core#>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+
+SELECT ?Dataset ?Description ?Keyword ?Title ?identifier ?Issued ?Publisher ?Distribution
+
+WHERE {
+
+?Dataset a dcat:Dataset .
+
+?Dataset dct:description ?Description ;
+
+dct:title ?Title ;
+
+dct:identifier ?identifier;
+
+dct:issued ?Issued ;
+
+dct:publisher ?Publisher ;
+
+dcat:distribution ?Distribution ;
+
+dcat:keyword ?Keyword;
+
+} LIMIT 100
+ </textarea>
+
+
+<textarea id="sparql_code_open" style="display:none">
+    # Add query text here with Prefixes
+</textarea>
+
+<!--Federated Query with Wiki Data-->
+ <textarea id="fed_query_wiki_data_text" style="display:none">
+     PREFIX adms: <http://www.w3.org/ns/adms#>
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX gsp: <http://www.opengis.net/ont/geosparql#>
+PREFIX hydra: <http://www.w3.org/ns/hydra/core#>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX spdx: <http://spdx.org/rdf/terms#>
+PREFIX time: <http://www.w3.org/2006/time>
+PREFIX vcard: <http://www.w3.org/2006/vcard/ns#>
+PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+
+SELECT ?Dataset ?Title ?Description ?keyword ?pubchemId ?wikidataItem ?wikidataItemLabel
+WHERE {
+  ?Dataset a dcat:Dataset .
+  ?Dataset dct:description ?Description ;
+           dct:title ?Title ;
+           dcat:keyword ?keyword.
+    FILTER STRSTARTS(?keyword, "InChI=")
+	SERVICE <https://query.wikidata.org/sparql> {
+    	?wikidataItem wdt:P234 ?keyword .
+    	?wikidataItem  wdt:P662 ?pubchemId.
+    SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "en". ?wikidataItem rdfs:label ?wikidataItemLabel
+    }
+  	}
+}
+LIMIT 10
+
+ </textarea>
+
+
+<!--many datasets we have? -->
+<textarea id="nr_of_datasets" style="display:none;">
+
+</textarea>
