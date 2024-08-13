@@ -26,6 +26,12 @@ $(document).ready(function() {
         createFedOrkgTab();
     });
 
+    // Event listener for the "Number Of datasets" button
+    $('button#nr_of_datasets').on('click', function(e) {
+        e.preventDefault();  // Prevent default form submission if the button is inside a form
+        createNrDatasets();
+    });
+
     // Event listener for adding a new tab
     $('#add_tab').on('click', function() {
         createNewTab();
@@ -199,6 +205,55 @@ function createFedOrkgTab() {
     switchTab(tabId);
 }
 
+
+function createNrDatasets() {
+    // Check if a tab with this name already exists
+    if ($('[data-tab-id="nr_of_datasets_tab"]').length > 0) {
+        switchTab('nr_of_datasets_tab');  // Switch to the existing tab if it exists
+        return;
+    }
+
+    editorCount++;
+    const tabId = 'nr_of_datasets_tab';
+
+    // Create tab button with an 'x' for closing
+    const tabButton = $('<div class="btn-group me-1" role="group"></div>')
+        .append($('<button type="button" class="btn btn-outline-primary"></button>')
+            .text('Nr. of Datasets')
+            .attr('data-tab-id', tabId)
+            .on('click', function() {
+                switchTab(tabId);
+            })
+            .on('dblclick', function() {
+                renameTab(this);
+            })
+        )
+        .append($('<button type="button" class="btn btn-outline-danger btn-sm"></button>')
+            .text('x')
+            .on('click', function(e) {
+                e.stopPropagation();
+                removeTab(tabId);
+            })
+        );
+
+    $('#tabs_container').append(tabButton);
+
+    // Create a new div for the editor
+    const editorDiv = $('<div></div>').attr('id', tabId).css('display', 'none');
+    $('#editors_container').append(editorDiv);
+
+    // Initialize CodeMirror on the 'title_with_inchi' <textarea>
+    const editor = CodeMirror.fromTextArea(document.getElementById('nr_of_datasets_text'), {
+        mode: "application/x-sparql-query",
+        lineNumbers: true
+    });
+
+    editorDiv.append(editor.getWrapperElement());
+    editors[tabId] = editor;
+
+    // Switch to the new tab
+    switchTab(tabId);
+}
 
 // Function to switch between tabs
 function switchTab(tabId) {
