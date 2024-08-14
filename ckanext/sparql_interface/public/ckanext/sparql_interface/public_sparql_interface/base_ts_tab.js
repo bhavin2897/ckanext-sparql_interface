@@ -45,7 +45,7 @@ $(document).ready(function() {
 });
 
 // Function to create a new tab
-function createNewTab(tabName = `Tab ${editorCount + 1}`) {
+function createNewTab(tabName = `Query ${editorCount + 1}`) {
     editorCount++;
     const tabId = 'editor' + editorCount;
 
