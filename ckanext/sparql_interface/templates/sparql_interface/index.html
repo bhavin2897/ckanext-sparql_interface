@@ -4,9 +4,9 @@
 
 <meta name="description" content="Sparql EndPoint Interface.">
 
-<header class="sparql_hideme">
-    <p>{{ _('Interface SPARQL') }}</p>
-</header>
+<!--<header class="sparql_hideme">-->
+<!--    <p>{{ _('Interface SPARQL') }}</p>-->
+<!--</header>-->
 
 <!-- Sparql base CSS/JS and Jquery -->
 
@@ -21,9 +21,6 @@
 <link rel="stylesheet" href="{% url_for_static '/public_sparql_interface/codemirror/themes/default.css' %}">
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/sparql/sparql.min.js"></script>-->
-
 
 {% endblock %}
 
@@ -53,14 +50,14 @@
     <br>
 
     <h4> Sample queries </h4>
-<button type="submit" name="" id="title_with_inchi">
+<button type="submit" name="" id="title_with_inchi" class="sample-query-button">
     Title & Description
 </button>
-    <button type="submit" id="fed_query_wiki_data">
+    <button type="submit" id="fed_query_wiki_data" class="sample-query-button">
         Federated Query with Wiki Data
     </button>
 
-    <button type="submit" id="nr_of_datasets">
+    <button type="submit" id="nr_of_datasets" class="sample-query-button">
        Number of Datasets
     </button>
 
@@ -71,29 +68,12 @@
     <br>
     <div class="container mt-3">
     <div class="d-flex justify-content-start mb-2">
-        <div id="tabs_container" class="btn-group me-2" role="group"></div>
+        <div id="tabs_container" class="btn-group me-2" role="group" aria-label="Basic radio toggle button group"></div>
         <button id="add_tab" class="btn btn-outline-success">+</button>
     </div>
 
     <div id="editors_container">
 
-        <!-- Textarea to be used as a starting point for CodeMirror instances -->
-
-        <textarea id="sparql_code" style="display:none;">
-
-    #{% trans %} Add here other prefixes for vocabularies that are needed {% endtrans %}
-    #PREFIX other vocab: <http://......
-
-    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    SELECT * WHERE {
-      ?sub ?pred ?obj .
-    } LIMIT 100
-        </textarea>
-
-<textarea id="sparql_code_2" style="display:none">
-    # Add text here
-</textarea>
      {% snippet 'sparql_interface/snippets/sample_query.html' %}
 
     </div>
@@ -153,6 +133,8 @@
 {% endblock %}
 
 
+{% block secondary %}{% endblock %}
+
 
 {% block scripts %}
 {{ super() }}
@@ -173,4 +155,3 @@ $(document).ready(function () {
 
 {% endblock %}
 
-{% block secondary %}{% endblock %}

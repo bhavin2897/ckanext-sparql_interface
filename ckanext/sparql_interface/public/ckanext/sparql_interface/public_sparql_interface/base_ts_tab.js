@@ -49,9 +49,9 @@ function createNewTab(tabName = `Query ${editorCount + 1}`) {
     editorCount++;
     const tabId = 'editor' + editorCount;
 
-    // Create tab button with an 'x' for closing
-    const tabButton = $('<div class="btn-group me-1" role="group"></div>')
-        .append($('<button type="button" class="btn btn-outline-primary"></button>')
+    // Create tab button with an 'x' for closing inside the same div
+    const tabButton = $('<div class="btn-group me-1" role="group" aria-label="Basic radio toggle button group"></div>')
+        .append($('<button type="button" class="btn custom-btn"></button>')
             .text(tabName)
             .attr('data-tab-id', tabId)
             .on('click', function() {
@@ -61,7 +61,7 @@ function createNewTab(tabName = `Query ${editorCount + 1}`) {
                 renameTab(this);
             })
         )
-        .append($('<button type="button" class="btn btn-outline-danger btn-sm"></button>')
+        .append($('<button type="button" class="close-button"></button>')
             .text('x')
             .on('click', function(e) {
                 e.stopPropagation();
@@ -118,8 +118,8 @@ function createInchiTab() {
     const tabId = 'title_with_inchi_tab';
 
     // Create tab button with an 'x' for closing
-    const tabButton = $('<div class="btn-group me-1" role="group"></div>')
-        .append($('<button type="button" class="btn btn-outline-primary"></button>')
+    const tabButton = $('<div class="btn-group me-1" role="group" aria-label="Basic radio toggle button group"></div>')
+        .append($('<button type="button" class="btn custom-btn"></button>')
             .text('Title & Description')
             .attr('data-tab-id', tabId)
             .on('click', function() {
@@ -129,7 +129,7 @@ function createInchiTab() {
                 renameTab(this);
             })
         )
-        .append($('<button type="button" class="btn btn-outline-danger btn-sm"></button>')
+        .append($('<button type="button" class="close-button"></button>')
             .text('x')
             .on('click', function(e) {
                 e.stopPropagation();
@@ -167,8 +167,8 @@ function createFedOrkgTab() {
     const tabId = 'fed_query_wiki_data_tab';
 
     // Create tab button with an 'x' for closing
-    const tabButton = $('<div class="btn-group me-1" role="group"></div>')
-        .append($('<button type="button" class="btn btn-outline-primary"></button>')
+    const tabButton = $('<div class="btn-group me-1" role="group" aria-label="Basic radio toggle button group"></div>')
+        .append($('<button type="button" class="btn custom-btn"></button>')
             .text('Fed Query with Wiki')
             .attr('data-tab-id', tabId)
             .on('click', function() {
@@ -178,7 +178,7 @@ function createFedOrkgTab() {
                 renameTab(this);
             })
         )
-        .append($('<button type="button" class="btn btn-outline-danger btn-sm"></button>')
+        .append($('<button type="button" class="close-button"></button>')
             .text('x')
             .on('click', function(e) {
                 e.stopPropagation();
@@ -217,8 +217,8 @@ function createNrDatasets() {
     const tabId = 'nr_of_datasets_tab';
 
     // Create tab button with an 'x' for closing
-    const tabButton = $('<div class="btn-group me-1" role="group"></div>')
-        .append($('<button type="button" class="btn btn-outline-primary"></button>')
+    const tabButton = $('<div class="btn-group me-1" role="group" aria-label="Basic radio toggle button group"></div>')
+        .append($('<button type="button" class="btn custom-btn"></button>')
             .text('Nr. of Datasets')
             .attr('data-tab-id', tabId)
             .on('click', function() {
@@ -228,7 +228,7 @@ function createNrDatasets() {
                 renameTab(this);
             })
         )
-        .append($('<button type="button" class="btn btn-outline-danger btn-sm"></button>')
+        .append($('<button type="button" class="close-button"></button>')
             .text('x')
             .on('click', function(e) {
                 e.stopPropagation();
