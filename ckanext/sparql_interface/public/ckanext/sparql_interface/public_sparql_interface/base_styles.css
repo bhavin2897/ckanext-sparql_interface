@@ -19,13 +19,13 @@
 #sparql_btn {
 	margin-bottom: 25px;
 	margin-top: 20px;
-	color: #83B62C;
-	border: 1px solid #83B62C !important;
+	color: #006b75;
+	border: 1px solid #006b75 !important;
 }
 
 #sparql_btn:hover {
 	cursor:pointer;
-	background-color: #83B62C;
+	background-color: #006b75;
 	color:#f0fcff;
 }
 
