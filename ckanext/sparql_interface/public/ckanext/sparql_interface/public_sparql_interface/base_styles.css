@@ -159,13 +159,19 @@
 }
 
 .sample-query-button {
-    font-weight: bold;
-    background-color: rgb(0, 156, 188) ; /* Main background color */
-    border: 1px solid rgb(0, 156, 188) ; /* Border matching background */
+    background-color: grey; /* Petrol base color */
+    border: 1px solid grey; /* Border matching the background */
     color: white; /* White text for contrast */
-    padding: 5px 10px; /* Padding for the tab text */
-    border-radius: 4px 0 0 4px; /* Rounded corners on the left side */
-    font-size: 14px; /* Font size for tab text */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s, border-color 0.3s; /* Smooth transition */
+    padding: 10px 20px; /* Padding for a comfortable clickable area */
+    border-radius: 5px; /* Soft rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+    font-weight: 500; /* Slightly bold text */
+}
+
+
+.sample-query-button:hover {
+    background-color: rgb(0, 156, 188); /* Lighter shade of petrol color on hover */
+    border-color: rgb(0, 156, 188); /* Matching lighter border */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow on hover for depth */
 }
