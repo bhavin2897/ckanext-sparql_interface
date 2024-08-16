@@ -1,7 +1,16 @@
+<textarea id="sparql_code" style="display:none;">
+#Add your query and other prefixes for vocabularies that are needed. Here is an example Query
 
+#PREFIX other vocab: <http://....
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+SELECT * WHERE {
+  ?sub ?pred ?obj .
+} LIMIT 25
+</textarea>
 
 <!--TITLE, Description and inchi as Keyword -->
-
 <textarea id="title_with_inchi_text" style="display: none;">
 PREFIX void: <http://rdfs.org/ns/void#>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
@@ -55,7 +64,10 @@ dcat:keyword ?Keyword;
 
 
 <textarea id="sparql_code_open" style="display:none">
-    # Add query text here with Prefixes
+SELECT DISTINCT ?concept
+WHERE {
+	?s a ?concept
+} LIMIT 10
 </textarea>
 
 <!--Federated Query with Wiki Data-->
