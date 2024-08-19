@@ -50,7 +50,7 @@ function createNewTab(tabName = `Query ${editorCount + 1}`) {
     const tabId = 'editor' + editorCount;
 
     // Create tab button with an 'x' for closing inside the same div
-    const tabButton = $('<div class="btn-group me-1" role="group" aria-label="Basic radio toggle button group"></div>')
+    const tabButton = $('<div class="btn-group tab-class me-1" role="group" aria-label="Basic radio toggle button group"></div>')
         .append($('<button type="button" class="btn custom-btn"></button>')
             .text(tabName)
             .attr('data-tab-id', tabId)
@@ -61,8 +61,7 @@ function createNewTab(tabName = `Query ${editorCount + 1}`) {
                 renameTab(this);
             })
         )
-        .append($('<button type="button" class="close-button"></button>')
-            .text('x')
+        .append($('<span class="btn btn-outline-success">x</span>')
             .on('click', function(e) {
                 e.stopPropagation();
                 removeTab(tabId);
@@ -118,7 +117,7 @@ function createInchiTab() {
     const tabId = 'title_with_inchi_tab';
 
     // Create tab button with an 'x' for closing
-    const tabButton = $('<div class="btn-group me-1" role="group" aria-label="Basic radio toggle button group"></div>')
+    const tabButton = $('<div class="btn-group tab-class me-1" role="group" aria-label="Basic radio toggle button group"></div>')
         .append($('<button type="button" class="btn custom-btn"></button>')
             .text('Title & Description')
             .attr('data-tab-id', tabId)
@@ -129,8 +128,7 @@ function createInchiTab() {
                 renameTab(this);
             })
         )
-        .append($('<button type="button" class="close-button"></button>')
-            .text('x')
+        .append($('<span class="btn btn-outline-success">x</span>')
             .on('click', function(e) {
                 e.stopPropagation();
                 removeTab(tabId);
@@ -167,7 +165,7 @@ function createFedOrkgTab() {
     const tabId = 'fed_query_wiki_data_tab';
 
     // Create tab button with an 'x' for closing
-    const tabButton = $('<div class="btn-group me-1" role="group" aria-label="Basic radio toggle button group"></div>')
+    const tabButton = $('<div class="btn-group tab-class me-1" role="group" aria-label="Basic radio toggle button group"></div>')
         .append($('<button type="button" class="btn custom-btn"></button>')
             .text('Fed Query with Wiki')
             .attr('data-tab-id', tabId)
@@ -178,8 +176,7 @@ function createFedOrkgTab() {
                 renameTab(this);
             })
         )
-        .append($('<button type="button" class="close-button"></button>')
-            .text('x')
+        .append($('<span class="btn btn-outline-success">x</span>')
             .on('click', function(e) {
                 e.stopPropagation();
                 removeTab(tabId);
@@ -217,7 +214,7 @@ function createNrDatasets() {
     const tabId = 'nr_of_datasets_tab';
 
     // Create tab button with an 'x' for closing
-    const tabButton = $('<div class="btn-group me-1" role="group" aria-label="Basic radio toggle button group"></div>')
+    const tabButton = $('<div class="btn-group tab-class me-1" role="group" aria-label="Basic radio toggle button group"></div>')
         .append($('<button type="button" class="btn custom-btn"></button>')
             .text('Nr. of Datasets')
             .attr('data-tab-id', tabId)
@@ -228,8 +225,7 @@ function createNrDatasets() {
                 renameTab(this);
             })
         )
-        .append($('<button type="button" class="close-button"></button>')
-            .text('x')
+        .append($('<span class="btn btn-outline-success">x</span>')
             .on('click', function(e) {
                 e.stopPropagation();
                 removeTab(tabId);
