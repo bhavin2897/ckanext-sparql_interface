@@ -18,6 +18,7 @@ Current Developement on NFDI4Chem Sparql Interface
 The extension use:
 
 - [`CodeMirror`](http://codemirror.net/) for the code editor in the browser.
+- ADDED yasgui script
 
 - May be extended to use [`SPARQLWrapper`](http://sparql-wrapper.sourceforge.net/) library - SPARQL Endpoint interface to Python
 
