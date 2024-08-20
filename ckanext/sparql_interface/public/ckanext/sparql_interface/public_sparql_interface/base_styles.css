@@ -166,3 +166,8 @@ border-bottom-color : rgb(0, 126, 152);
 .yasqe_share {
 display: none !important;
 }
+
+.yasr_plugin_control .label{
+    color: black;
+    font-size: 75%;
+}
