@@ -150,3 +150,19 @@ border: 1px solid grey;
     border-color: rgb(0, 156, 188); /* Matching lighter border */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow on hover for depth */
 }
+
+
+.controlbar
+{
+display: none !important;
+}
+
+.tab.active a{
+color: #333333 !important;
+text-decoration: none;
+border-bottom-color : rgb(0, 126, 152);
+}
+
+.yasqe_share {
+display: none !important;
+}
