@@ -74,7 +74,7 @@
         title="SPARQL Endpoint"></abbr>
     <br>
     <br>
-    <div class="container">
+    <div class="container-yasgui">
 <!--    <div class="d-flex justify-content-start mb-2">-->
 <!--        <div id="tabs_container" class="btn-group me-2" role="group" aria-label="Basic radio toggle button group"></div>-->
 <!--        <button id="add_tab" class="btn btn-outline-success">+</button>-->
@@ -85,6 +85,7 @@
      {% snippet 'sparql_interface/snippets/sample_query.html' %}
 
     </div>
+    <button id="sparql_btn" class="btn" onclick="call_sparql_point_server();">{{ _('Save Query') }}</button>
 </div>
 
 
@@ -136,8 +137,8 @@
 <!--    </div>-->
 
 <!--    <div id="sparql_results"></div>-->
-<button id="sparql_btn" class="btn" onclick="call_sparql_point_server();">{{ _('Save Query') }}</button>
-</div>
+
+
 
 {% endblock %}
 

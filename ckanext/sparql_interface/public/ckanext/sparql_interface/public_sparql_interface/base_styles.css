@@ -6,7 +6,7 @@
 }
 
 #sparql_point_block {
-	margin-left: 15px;
+	margin-left: 25px;
 	margin-right: 25px;
 	margin-top: 25px;
 	margin-bottom: 25px;
@@ -45,6 +45,7 @@
 }
 
 #sparql_link_query {
+    display: none !important;
 	margin-top: 20px;
 }
 
@@ -55,6 +56,10 @@
 .CodeMirror {
 	border: 1px solid black;
 	border-bottom: 1px solid black;
+}
+
+
+.container-yasgui{
 }
 
 .activeline {
