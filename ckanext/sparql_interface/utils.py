@@ -352,3 +352,4 @@ def sparqlQueryold(data_structure):
     else:
         data = json.loads(response_query, object_pairs_hook=collections.OrderedDict)
         return data
+

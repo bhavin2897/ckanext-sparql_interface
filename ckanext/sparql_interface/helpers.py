@@ -2,6 +2,7 @@ from urllib.parse import urlparse
 import ckan.plugins as p
 from ckanext.sparql_interface.utils import sparql_query_SPARQLWrapper as utils_sparqlQuery
 from logging import getLogger
+import hashlib
 
 
 logger = getLogger(__name__)
@@ -52,3 +53,9 @@ def sparql_hide_endpoint_url():
 @helper
 def sparqlQuery(data_structure):
     return utils_sparqlQuery(data_structure)
+
+
+
+
+
+

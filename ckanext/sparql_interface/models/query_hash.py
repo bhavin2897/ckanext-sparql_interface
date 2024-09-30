@@ -1,0 +1,79 @@
+# encoding: utf-8
+
+from datetime import datetime
+from sqlalchemy import Column, Text, TIMESTAMP
+#from sqlalchemy.dialects.postgresql import TIMESTAMPTZ
+from sqlalchemy import Column, ForeignKey, func, String, distinct
+from sqlalchemy.orm import relationship
+from sqlalchemy import orm
+
+import ckan.model.package as _package
+from sqlalchemy import types as _types
+from ckan.model import Session
+from ckan.model import meta
+from .base import Base
+
+class SparqlQueryHash(Base):
+
+    __tablename__ = "sparql_query_hash"
+    __table_args__ = {"schema": "public"}
+
+    """
+    Table is used to store SPARQL query hashes.
+    Short and Long format which can be later used for acquiring the corresponding query when the hash code is given. 
+    """
+
+    id = Column(_types.Integer, primary_key=True, autoincrement=True, nullable=False)
+    timestamp = Column(TIMESTAMP, nullable=False)
+    query_long_format = Column(_types.String, nullable=False)
+    query_hash_format = Column(_types.String, nullable=False)
+
+    @classmethod
+    def create(cls, timestamp, query_long_format, query_hash_format):
+        """
+        Create a new SparqlQueryHash entry.
+
+        @param timestamp: The timestamp of the query.
+        @param query_long_format: The full SPARQL query string.
+        @param query_hash_format: The hash of the SPARQL query.
+        @return: The newly created SparqlQueryHash entry.
+        """
+
+        new_entry = cls(
+            timestamp=timestamp,
+            query_long_format=query_long_format,
+            query_hash_format=query_hash_format,
+        )
+        Session.add(new_entry)
+        Session.commit()
+        return new_entry
+
+    @classmethod
+    def get_hash_format(cls, query_long_format=None, query_hash_format=None):
+        """
+        Retrieves the long format query based on the given hash format or the hash format
+        based on the given long format query.
+
+        @param query_long_format: The full SPARQL query string. If provided, this method will
+                                  return the associated hash format.
+        @param query_hash_format: The hash of the SPARQL query. If provided, this method will
+                                  return the associated long format query.
+        @return: The associated query string (either hash format or long format) if found,
+                 otherwise None.
+        """
+
+        if query_long_format:
+            # Search by long format to get hash format
+            entry = Session.query(cls).filter_by(query_long_format=query_long_format).first()
+            return entry.query_hash_format if entry else None
+        elif query_hash_format:
+            # Search by hash format to get long format
+            entry = Session.query(cls).filter_by(query_hash_format=query_hash_format).first()
+            return entry.query_long_format if entry else None
+        else:
+            # If neither format is provided, return None
+            return None
+
+
+
+
