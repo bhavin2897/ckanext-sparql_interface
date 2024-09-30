@@ -141,14 +141,12 @@ $(document).ready(function () {
         return window.location.origin + pathArray.slice(0, -1).join("/");
     }
 
-    // Save the query to CKAN backend when the SaveQuery button is clicked
     $('#saveQuery').on('click', function (e) {
-        e.preventDefault();
-        saveQuery();
-    });
+    e.preventDefault();
+    saveQuery();
+});
 
-
-    function saveQuery() {
+function saveQuery() {
     // Get the current SPARQL query
     let sparqlQuery = get_sparql_string();
 
@@ -175,6 +173,7 @@ $(document).ready(function () {
         success: function (response) {
             $('#loading_image').hide();
             copyToClipboard(response.hash); // Copy the hash to the clipboard
+            showTick(); // Show the tick mark when copied successfully
             showCopiedTooltip(); // Show a tooltip to indicate that the hash is copied
         },
         error: function () {
@@ -182,51 +181,63 @@ $(document).ready(function () {
             showError("Error while saving the query.");
         }
     });
-    }
+}
 
-    // Function to copy the hash to the clipboard
-    function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(function() {
-            console.log('Query hash copied to clipboard: ' + text);
-        }, function(err) {
-            console.error('Could not copy text: ', err);
+// Function to copy the hash to the clipboard
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function () {
+        console.log('Query hash copied to clipboard: ' + text);
+    }, function (err) {
+        console.error('Could not copy text: ', err);
+    });
+}
+
+// Function to show a small tick when query is copied
+function showTick() {
+    let tickElement = $('#copyTick');
+    tickElement.show(); // Show the tick
+
+    // Hide the tick after 2 seconds
+    setTimeout(function () {
+        tickElement.hide();
+    }, 2000); // Adjust the timeout duration as needed
+}
+
+// Function to show a small tooltip or message indicating that the hash is copied above the button
+function showCopiedTooltip() {
+//    let tooltip = $('<div class="copied-tooltip">Copied to clipboard!</div>');
+    $('#saveQuery').after(tooltip); // Add the tooltip right after the button
+
+    // Get the button position and dimensions
+    let buttonOffset = $('#saveQuery').offset();
+    let buttonWidth = $('#saveQuery').outerWidth();
+    let buttonHeight = $('#saveQuery').outerHeight();
+
+    // Style the tooltip with CSS to position it above the button
+    $('.copied-tooltip').css({
+        position: 'absolute',
+        top: (buttonOffset.top - buttonHeight - 10) + 'px', // Position it above the button with 10px spacing
+        left: (buttonOffset.left + buttonWidth / 2 - tooltip.outerWidth() / 2) + 'px', // Center it horizontally relative to the button
+        padding: '5px 10px',
+        background: 'green',
+        color: 'white',
+        borderRadius: '5px',
+        fontSize: '12px',
+        zIndex: 1000,
+        opacity: 0, // Start hidden
+        transition: 'opacity 0.3s ease'
+    });
+
+    // Show the tooltip
+    $('.copied-tooltip').animate({ opacity: 1 }, 300);
+
+    // Automatically hide the tooltip after 2 seconds
+    setTimeout(function () {
+        $('.copied-tooltip').fadeOut(500, function () {
+            $(this).remove(); // Remove the element from the DOM
         });
-    }
+    }, 2000); // Keep it visible for 2 seconds
+}
 
-    // Function to show a small tooltip or message indicating that the hash is copied above the button
-    function showCopiedTooltip() {
-        let tooltip = $('<div class="copied-tooltip">Copied to clipboard!</div>');
-        $('#saveQuery').after(tooltip); // Add the tooltip right after the button
-
-        // Get the button position and dimensions
-        let buttonOffset = $('#save-query-button').offset();
-        let buttonWidth = $('#save-query-button').outerWidth();
-        let buttonHeight = $('#save-query-button').outerHeight();
-
-        // Style the tooltip with CSS to position it above the button
-        $('.copied-tooltip').css({
-            position: 'absolute',
-            top: (buttonOffset.top - buttonHeight - 10) + 'px', // Position it above the button with 10px spacing
-            left: (buttonOffset.left + buttonWidth / 2 - tooltip.outerWidth() / 2) + 'px', // Center it horizontally relative to the button
-            padding: '5px 10px',
-            background: 'green',
-            color: 'white',
-            borderRadius: '5px',
-            fontSize: '12px',
-            zIndex: 1000,
-            opacity: 0, // Start hidden
-            transition: 'opacity 0.3s ease'
-        });
-
-        // Show the tooltip
-        $('.copied-tooltip').animate({ opacity: 1 }, 300);
-
-        // Automatically hide the tooltip after 2 seconds
-        setTimeout(function() {
-            $('.copied-tooltip').fadeOut(500, function() {
-                $(this).remove(); // Remove the element from the DOM
-            });
-        }, 2000); // Keep it visible for 2 seconds
-    }
 
 });
