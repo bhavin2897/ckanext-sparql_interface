@@ -31,22 +31,29 @@ class SparqlQueryHash(Base):
     @classmethod
     def create(cls, timestamp, query_long_format, query_hash_format):
         """
-        Create a new SparqlQueryHash entry.
+        Create a new SparqlQueryHash entry if it doesn't already exist.
 
         @param timestamp: The timestamp of the query.
         @param query_long_format: The full SPARQL query string.
         @param query_hash_format: The hash of the SPARQL query.
-        @return: The newly created SparqlQueryHash entry.
+        @return: The existing or newly created SparqlQueryHash entry.
         """
+        # Check if an entry with the same query_hash_format already exists
+        existing_entry = Session.query(cls).filter_by(query_hash_format=query_hash_format).first()
 
-        new_entry = cls(
-            timestamp=timestamp,
-            query_long_format=query_long_format,
-            query_hash_format=query_hash_format,
-        )
-        Session.add(new_entry)
-        Session.commit()
-        return new_entry
+        if existing_entry:
+            # If the entry already exists, return it
+            return existing_entry
+        else:
+            # If not, create a new entry
+            new_entry = cls(
+                timestamp=timestamp,
+                query_long_format=query_long_format,
+                query_hash_format=query_hash_format,
+            )
+            Session.add(new_entry)
+            Session.commit()
+            return new_entry
 
     @classmethod
     def get_hash_format(cls, query_long_format=None, query_hash_format=None):

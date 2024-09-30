@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1d8e39-7a01-4d3b-a222-83f5fdf3a4bd" name="Changes" comment="companionable for GitHub test">
-      <change afterPath="$PROJECT_DIR$/ckanext/sparql_interface/models/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ckanext/sparql_interface/models/query_hash.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/snippets/hash_query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/blueprint.py" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/blueprint.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/helpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/helpers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base_styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base_styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/snippets/sample_query.html" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/snippets/sample_query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/utils.py" afterDir="false" />
-    </list>
+    <list default="true" id="7f1d8e39-7a01-4d3b-a222-83f5fdf3a4bd" name="Changes" comment="Saved Query with db migration" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -300,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724235004612</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Saved Query with db migration">
+      <option name="closed" value="true" />
+      <created>1727689549044</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1727689549044</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -335,6 +331,7 @@
     <MESSAGE value="added test.yml file for git test" />
     <MESSAGE value="test yml run" />
     <MESSAGE value="companionable for GitHub test" />
-    <option name="LAST_COMMIT_MESSAGE" value="companionable for GitHub test" />
+    <MESSAGE value="Saved Query with db migration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Saved Query with db migration" />
   </component>
 </project>
