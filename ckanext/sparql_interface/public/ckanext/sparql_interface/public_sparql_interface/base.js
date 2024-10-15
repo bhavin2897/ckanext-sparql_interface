@@ -35,6 +35,9 @@ $(document).ready(function () {
         editorCount++;
         const tabId = 'editor' + editorCount;
 
+        // Clear the YASGUI container
+        $('#yasgui').empty(); // Clear the YASGUI container
+
         let yasgui = new Yasgui(document.getElementById('yasgui'), {
             requestConfig: { endpoint: "{{ h.sparql_endpoint_url() }}", endpointInput: false, method: "POST" },
             showControlBar: false
@@ -196,11 +199,16 @@ $(document).ready(function () {
 
     // Function to copy the hash to the clipboard
     function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(function () {
-            console.log('Query hash copied to clipboard: ' + text);
-        }, function (err) {
-            console.error('Could not copy text: ', err);
-        });
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(function () {
+                console.log('Query hash copied to clipboard: ' + text);
+            }, function (err) {
+                console.error('Could not copy text: ', err);
+            });
+        } else {
+            console.error('Clipboard API is not available.');
+            alert('Clipboard API is not supported in your browser or the page is not served over HTTPS.');
+        }
     }
 
     // Function to show a small tick when the query is copied
@@ -215,38 +223,38 @@ $(document).ready(function () {
     }
 
     // Function to show a tooltip indicating that the hash is copied above the button
-//    function showCopiedTooltip() {
-//        let tooltip = $('<div class="copied-tooltip">Copied to clipboard!</div>');
-//        $('#saveQuery').after(tooltip); // Add the tooltip right after the button
-//
-//        // Get the button position and dimensions
-//        let buttonOffset = $('#saveQuery').offset();
-//        let buttonWidth = $('#saveQuery').outerWidth();
-//        let buttonHeight = $('#saveQuery').outerHeight();
-//
-//        // Style the tooltip with CSS to position it above the button
-//        tooltip.css({
-//            position: 'absolute',
-//            top: (buttonOffset.top - buttonHeight - 10) + 'px', // Position it above the button with 10px spacing
-//            left: (buttonOffset.left + buttonWidth / 2 - tooltip.outerWidth() / 2) + 'px', // Center it horizontally relative to the button
-//            padding: '5px 10px',
-//            background: 'green',
-//            color: 'white',
-//            borderRadius: '5px',
-//            fontSize: '12px',
-//            zIndex: 1000,
-//            opacity: 0, // Start hidden
-//            transition: 'opacity 0.3s ease'
-//        });
-//
-//        // Show the tooltip
-//        tooltip.animate({ opacity: 1 }, 300);
-//
-//        // Automatically hide the tooltip after 2 seconds
-//        setTimeout(function () {
-//            tooltip.fadeOut(500, function () {
-//                $(this).remove(); // Remove the element from the DOM
-//            });
-//        }, 2000); // Keep it visible for 2 seconds
-//    }
+    function showCopiedTooltip() {
+        let tooltip = $('<div class="copied-tooltip">Copied to clipboard!</div>');
+        $('#saveQuery').after(tooltip); // Add the tooltip right after the button
+
+        // Get the button position and dimensions
+        let buttonOffset = $('#saveQuery').offset();
+        let buttonWidth = $('#saveQuery').outerWidth();
+        let buttonHeight = $('#saveQuery').outerHeight();
+
+        // Style the tooltip with CSS to position it above the button
+        tooltip.css({
+            position: 'absolute',
+            top: (buttonOffset.top - buttonHeight - 10) + 'px', // Position it above the button with 10px spacing
+            left: (buttonOffset.left + buttonWidth / 2 - tooltip.outerWidth() / 2) + 'px', // Center it horizontally relative to the button
+            padding: '5px 10px',
+            background: 'green',
+            color: 'white',
+            borderRadius: '5px',
+            fontSize: '12px',
+            zIndex: 1000,
+            opacity: 0, // Start hidden
+            transition: 'opacity 0.3s ease'
+        });
+
+        // Show the tooltip
+        tooltip.animate({ opacity: 1 }, 300);
+
+        // Automatically hide the tooltip after 2 seconds
+        setTimeout(function () {
+            tooltip.fadeOut(500, function () {
+                $(this).remove(); // Remove the element from the DOM
+            });
+        }, 2000); // Keep it visible for 2 seconds
+    }
 });
