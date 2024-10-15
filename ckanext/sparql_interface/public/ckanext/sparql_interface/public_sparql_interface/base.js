@@ -160,42 +160,49 @@ $(document).ready(function () {
     }
 
     function saveQuery() {
-        // Get the current SPARQL query
-        let sparqlQuery = get_sparql_string();
-
-        // Ensure a query exists
-        if (!sparqlQuery) {
-            showError("No SPARQL query to save.");
-            return;
-        }
-
-        // Prepare the data for saving
-        const saveData = {
-            query: sparqlQuery
-        };
-
-        // Show loading spinner
-        $('#loading_image').show();
-
-        // Send the SPARQL query to CKAN backend for saving
-        $.ajax({
-            type: 'POST',
-            url: '/sparql_interface/save', // Replace with your actual CKAN API URL for saving
-            contentType: 'application/json',
-            data: JSON.stringify(saveData),
-            success: function (response) {
-                $('#loading_image').hide();
-                copyToClipboard(response.hash); // Copy the hash to the clipboard
-                showClipboardNotification(); // Show the "Copied to clipboard!" notification
-                showTick(); // Show the tick mark when copied successfully
-//                showCopiedTooltip(); // Show a tooltip to indicate that the hash is copied
-            },
-            error: function () {
-                $('#loading_image').hide();
-                showError("Error while saving the query.");
-            }
-        });
+    // Ensure the currentTabId is defined and there is an editor for it
+    if (!currentTabId || !editors[currentTabId]) {
+        showError("No active editor for the current tab.");
+        return;
     }
+
+    // Get the current SPARQL query
+    let sparqlQuery = get_sparql_string();
+
+    // Ensure a query exists
+    if (!sparqlQuery) {
+        showError("No SPARQL query to save.");
+        return;
+    }
+
+    // Prepare the data for saving
+    const saveData = {
+        query: sparqlQuery
+    };
+
+    // Show loading spinner
+    $('#loading_image').show();
+
+    // Send the SPARQL query to CKAN backend for saving
+    $.ajax({
+        type: 'POST',
+        url: '/sparql_interface/save', // Replace with your actual CKAN API URL for saving
+        contentType: 'application/json',
+        data: JSON.stringify(saveData),
+        success: function (response) {
+            $('#loading_image').hide();
+            copyToClipboard(response.hash); // Copy the hash to the clipboard
+            showClipboardNotification(); // Show the "Copied to clipboard!" notification
+            showTick(); // Show the tick mark when copied successfully
+            showCopiedTooltip(); // Show a tooltip to indicate that the hash is copied
+        },
+        error: function () {
+            $('#loading_image').hide();
+            showError("Error while saving the query.");
+        }
+    });
+}
+
 
     // Function to copy the hash to the clipboard
     function copyToClipboard(text) {
