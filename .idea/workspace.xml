@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f1d8e39-7a01-4d3b-a222-83f5fdf3a4bd" name="Changes" comment="Don't save, if hash exists">
+    <list default="true" id="7f1d8e39-7a01-4d3b-a222-83f5fdf3a4bd" name="Changes" comment="Show a tick when it is copied to clip board">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/public/ckanext/sparql_interface/public_sparql_interface/base.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ckanext/sparql_interface/templates/sparql_interface/index.html" afterDir="false" />
@@ -308,7 +308,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727690329026</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Show a tick when it is copied to clip board">
+      <option name="closed" value="true" />
+      <created>1727692478563</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1727692478563</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -345,6 +353,7 @@
     <MESSAGE value="companionable for GitHub test" />
     <MESSAGE value="Saved Query with db migration" />
     <MESSAGE value="Don't save, if hash exists" />
-    <option name="LAST_COMMIT_MESSAGE" value="Don't save, if hash exists" />
+    <MESSAGE value="Show a tick when it is copied to clip board" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show a tick when it is copied to clip board" />
   </component>
 </project>

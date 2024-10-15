@@ -30,13 +30,10 @@ $(document).ready(function () {
         fetchSparqlQuery(queryHash);
     }
 
-
     // Open a new YASGUI tab with the provided query and set the tab name
     function openTabWithQuery(tabName, query) {
         editorCount++;
         const tabId = 'editor' + editorCount;
-
-        $('#yasgui').empty(); // Clear the YASGUI container
 
         let yasgui = new Yasgui(document.getElementById('yasgui'), {
             requestConfig: { endpoint: "{{ h.sparql_endpoint_url() }}", endpointInput: false, method: "POST" },
@@ -48,7 +45,7 @@ $(document).ready(function () {
         tab.yasqe.setValue(query); // Set the SPARQL query
 
         editors[tabId] = { yasgui: yasgui };
-        currentTabId = tabId;
+        currentTabId = tabId; // Set the current tab ID
         console.log(currentTabId);
     }
 
@@ -72,10 +69,8 @@ $(document).ready(function () {
                 if (response.error) {
                     showError(response.error);
                 } else {
-                       // Fetch the content from the textarea with id="fetched_hash_query_text"
                     var fetchedQueryText = $('#fetched_hash_query_text').val();
                     var shortQueryHash = queryHash.substring(0, 4);
-                    // Use the fetched query text in the openTabWithQuery function
                     openTabWithQuery("Query " + shortQueryHash, fetchedQueryText);
                 }
             },
@@ -115,15 +110,19 @@ $(document).ready(function () {
     // Display SPARQL query results
     function displayResults(response) {
         $('#sparql_results').html(response);
-        let baseAddress = queryHref() + '/' + change_direct_link_value(this.url);
-
         $('#sparql_results, #sparql_link_query').show();
         $('#loading_image').hide();
     }
 
     // Get the current SPARQL query
     function get_sparql_string() {
-        return editors[currentTabId].yasgui.getTab().yasqe.getValue();
+        // Check if currentTabId is defined and there is an editor for it
+        if (currentTabId && editors[currentTabId]) {
+            return editors[currentTabId].yasgui.getTab().yasqe.getValue();
+        } else {
+            console.error('Editor for the current tab is not defined');
+            return ''; // Return an empty string if no editor exists
+        }
     }
 
     // Utility functions
@@ -142,102 +141,112 @@ $(document).ready(function () {
     }
 
     $('#saveQuery').on('click', function (e) {
-    e.preventDefault();
-    saveQuery();
-});
+        e.preventDefault();
+        saveQuery();
+    });
 
-function saveQuery() {
-    // Get the current SPARQL query
-    let sparqlQuery = get_sparql_string();
+    // Function to show a small notification indicating that the query is copied
+    function showClipboardNotification() {
+        let notification = $('#clipboard-notification');
+        notification.show(); // Show the notification
 
-    // Ensure a query exists
-    if (!sparqlQuery) {
-        showError("No SPARQL query to save.");
-        return;
+        // Automatically hide the notification after 2 seconds
+        setTimeout(function () {
+            notification.fadeOut(300); // Fade out animation
+        }, 2000); // Adjust the duration as needed
     }
 
-    // Prepare the data for saving
-    const saveData = {
-        query: sparqlQuery
-    };
+    function saveQuery() {
+        // Get the current SPARQL query
+        let sparqlQuery = get_sparql_string();
 
-    // Show loading spinner
-    $('#loading_image').show();
-
-    // Send the SPARQL query to CKAN backend for saving
-    $.ajax({
-        type: 'POST',
-        url: '/sparql_interface/save', // Replace with your actual CKAN API URL for saving
-        contentType: 'application/json',
-        data: JSON.stringify(saveData),
-        success: function (response) {
-            $('#loading_image').hide();
-            copyToClipboard(response.hash); // Copy the hash to the clipboard
-            showTick(); // Show the tick mark when copied successfully
-            showCopiedTooltip(); // Show a tooltip to indicate that the hash is copied
-        },
-        error: function () {
-            $('#loading_image').hide();
-            showError("Error while saving the query.");
+        // Ensure a query exists
+        if (!sparqlQuery) {
+            showError("No SPARQL query to save.");
+            return;
         }
-    });
-}
 
-// Function to copy the hash to the clipboard
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(function () {
-        console.log('Query hash copied to clipboard: ' + text);
-    }, function (err) {
-        console.error('Could not copy text: ', err);
-    });
-}
+        // Prepare the data for saving
+        const saveData = {
+            query: sparqlQuery
+        };
 
-// Function to show a small tick when query is copied
-function showTick() {
-    let tickElement = $('#copyTick');
-    tickElement.show(); // Show the tick
+        // Show loading spinner
+        $('#loading_image').show();
 
-    // Hide the tick after 2 seconds
-    setTimeout(function () {
-        tickElement.hide();
-    }, 2000); // Adjust the timeout duration as needed
-}
-
-// Function to show a small tooltip or message indicating that the hash is copied above the button
-function showCopiedTooltip() {
-//    let tooltip = $('<div class="copied-tooltip">Copied to clipboard!</div>');
-    $('#saveQuery').after(tooltip); // Add the tooltip right after the button
-
-    // Get the button position and dimensions
-    let buttonOffset = $('#saveQuery').offset();
-    let buttonWidth = $('#saveQuery').outerWidth();
-    let buttonHeight = $('#saveQuery').outerHeight();
-
-    // Style the tooltip with CSS to position it above the button
-    $('.copied-tooltip').css({
-        position: 'absolute',
-        top: (buttonOffset.top - buttonHeight - 10) + 'px', // Position it above the button with 10px spacing
-        left: (buttonOffset.left + buttonWidth / 2 - tooltip.outerWidth() / 2) + 'px', // Center it horizontally relative to the button
-        padding: '5px 10px',
-        background: 'green',
-        color: 'white',
-        borderRadius: '5px',
-        fontSize: '12px',
-        zIndex: 1000,
-        opacity: 0, // Start hidden
-        transition: 'opacity 0.3s ease'
-    });
-
-    // Show the tooltip
-    $('.copied-tooltip').animate({ opacity: 1 }, 300);
-
-    // Automatically hide the tooltip after 2 seconds
-    setTimeout(function () {
-        $('.copied-tooltip').fadeOut(500, function () {
-            $(this).remove(); // Remove the element from the DOM
+        // Send the SPARQL query to CKAN backend for saving
+        $.ajax({
+            type: 'POST',
+            url: '/sparql_interface/save', // Replace with your actual CKAN API URL for saving
+            contentType: 'application/json',
+            data: JSON.stringify(saveData),
+            success: function (response) {
+                $('#loading_image').hide();
+                copyToClipboard(response.hash); // Copy the hash to the clipboard
+                showClipboardNotification(); // Show the "Copied to clipboard!" notification
+                showTick(); // Show the tick mark when copied successfully
+//                showCopiedTooltip(); // Show a tooltip to indicate that the hash is copied
+            },
+            error: function () {
+                $('#loading_image').hide();
+                showError("Error while saving the query.");
+            }
         });
-    }, 2000); // Keep it visible for 2 seconds
-}
+    }
 
+    // Function to copy the hash to the clipboard
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function () {
+            console.log('Query hash copied to clipboard: ' + text);
+        }, function (err) {
+            console.error('Could not copy text: ', err);
+        });
+    }
 
+    // Function to show a small tick when the query is copied
+    function showTick() {
+        let tickElement = $('#copyTick');
+        tickElement.show(); // Show the tick
+
+        // Hide the tick after 2 seconds
+        setTimeout(function () {
+            tickElement.hide();
+        }, 2000); // Adjust the timeout duration as needed
+    }
+
+    // Function to show a tooltip indicating that the hash is copied above the button
+//    function showCopiedTooltip() {
+//        let tooltip = $('<div class="copied-tooltip">Copied to clipboard!</div>');
+//        $('#saveQuery').after(tooltip); // Add the tooltip right after the button
+//
+//        // Get the button position and dimensions
+//        let buttonOffset = $('#saveQuery').offset();
+//        let buttonWidth = $('#saveQuery').outerWidth();
+//        let buttonHeight = $('#saveQuery').outerHeight();
+//
+//        // Style the tooltip with CSS to position it above the button
+//        tooltip.css({
+//            position: 'absolute',
+//            top: (buttonOffset.top - buttonHeight - 10) + 'px', // Position it above the button with 10px spacing
+//            left: (buttonOffset.left + buttonWidth / 2 - tooltip.outerWidth() / 2) + 'px', // Center it horizontally relative to the button
+//            padding: '5px 10px',
+//            background: 'green',
+//            color: 'white',
+//            borderRadius: '5px',
+//            fontSize: '12px',
+//            zIndex: 1000,
+//            opacity: 0, // Start hidden
+//            transition: 'opacity 0.3s ease'
+//        });
+//
+//        // Show the tooltip
+//        tooltip.animate({ opacity: 1 }, 300);
+//
+//        // Automatically hide the tooltip after 2 seconds
+//        setTimeout(function () {
+//            tooltip.fadeOut(500, function () {
+//                $(this).remove(); // Remove the element from the DOM
+//            });
+//        }, 2000); // Keep it visible for 2 seconds
+//    }
 });
