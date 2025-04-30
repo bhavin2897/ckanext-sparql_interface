@@ -59,6 +59,7 @@ In your ``ckan.ini`` file set
 ```
 	ckanext.sparql_interface.endpoint_url = <your default endpoint url>    (defaults to http://dbpedia.org/sparql)
 	ckanext.sparql_interface.hide_endpoint_url = (true | false)    (defaults to false)
+	ckanext.sparql_interface.openai_api_key = gk_**** (You need to add GROQ API key before using this feature in your conf file)
 ```
   
 ## Use
@@ -93,7 +94,9 @@ var prefixes = "PREFIX void: <http://rdfs.org/ns/void#> PREFIX geo: <http://www.
 
 ### BETA Version:
 #### Natrual Language to SPAQRL query converted using LLM
-Using LLM from Llama we have used simpole text questions for spaqrl queries, so that user do not have to worry about the spaqrl language. He can simple ask questions on the QUESTION bar
+Using LLM from Llama we have used simpole text questions for spaqrl queries, so that user do not have to worry about the spaqrl language. He can simple ask questions on the QUESTION bar. 
+
+This is from GROQ Inc., which runs on a free API Tool. Its important that it is limited to fewer questions and you need to parse your own API key before using this plugin to the Configuration file.
 
 ## Changelog
 
