@@ -14,6 +14,7 @@
 <script src="{% url_for_static '/public_sparql_interface/jquery-1.9.1.min.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+
 <!-- Code Mirror CSS/JS -->
 
 <!--<link rel="stylesheet" href="{% url_for_static '/public_sparql_interface/codemirror/lib/codemirror.css' %}">-->
@@ -23,6 +24,9 @@
 <!-- YASGUI CSS/JS -->
 <link rel="stylesheet" href="{{ h.url_for_static('/public_sparql_interface/yasgui/yasgui-4.2.28.min.css') }}">
 <link rel="stylesheet" href="{{ h.url_for_static('/public_sparql_interface/yasgui/yasqe-4.2.28.min.css') }}">
+<!-- Correct YASGUI CDN -->
+<link rel="stylesheet" href="https://unpkg.com/yasgui/build/yasgui.min.css" />
+<script src="https://unpkg.com/yasgui/build/yasgui.min.js"></script>
 
 <script src="{{ h.url_for_static('/public_sparql_interface/yasgui/yasqe-4.2.28.min.js') }}"></script>
 <script src="{{ h.url_for_static('/public_sparql_interface/yasgui/yasgui-4.2.28.min.js') }}"></script>
@@ -47,10 +51,12 @@
 </header>
 
 
+{% snippet 'sparql_interface/snippets/llm_query.html' %}
+
 <div id="sparql_point_block">
-    <h1> SPARQL Editor  </h1>
+    <h1> <i class="fa fa-flask" aria-hidden="true"></i>&nbsp;BETA: SPARQL Editor  </h1>
 <div class="control-group control-full" {% if h.sparql_hide_endpoint_url() %} style="display:none; " {% endif %}>
-       <h4> TEST PURPOSES ONLY</h4>
+
        <p> <b> Current SPARQL Server: </b> <a href="{{ h.sparql_endpoint_url() }}">{{ h.sparql_endpoint_url() }} </a> </p>
            <input id="field-sparql-server" type="hidden" name="sparql-server" value="{{h.sparql_endpoint_url()}}"
                   placeholder="{{ _('Add the URL of the SPARQL service. For example:') }} {{h.sparql_endpoint_url()}}" >

@@ -4,7 +4,7 @@
 NOTE: The ``ckanext-sparql_interface`` extension was tested using ``Virtuoso sparql instances``
 Modifying for the compatibility of [NFDI4Chem Search Service](https://search.nfdi4chem.de/)
 
-- **Version:** 2.0
+- **Version:** 2.1.0
 - **Status:** Development
 - **CKAN Version:** >= 2.9
 
@@ -91,12 +91,16 @@ To change the default prefixes, edit `prefixes` in [`public/ckanext/sparql_inter
 var prefixes = "PREFIX void: <http://rdfs.org/ns/void#> PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> PREFIX foaf: <http://xmlns.com/foaf/0.1/> PREFIX vann: <http://purl.org/vocab/vann/> PREFIX teach: <http://linkedscience.org/teach/ns#>"
 ```
 
-  
+### BETA Version:
+#### Natrual Language to SPAQRL query converted using LLM
+Using LLM from Llama we have used simpole text questions for spaqrl queries, so that user do not have to worry about the spaqrl language. He can simple ask questions on the QUESTION bar
+
 ## Changelog
 
 - Version: 1.01: Fix Bugs 
 - Version: 2.0: Adapted to ckan 2.9 and internationalized
 - Version: 2.0.1: Minor fixes
+- Version: 2.1.0: Natural Language to SPAQRL Text
 
 Example
 =======

@@ -1,5 +1,8 @@
 # encoding: utf-8
-
+import requests
+import os
+import openai
+import time
 from flask import Blueprint, redirect, url_for, jsonify, render_template
 from datetime import datetime
 from ckan.plugins.toolkit import c, render, request
@@ -85,5 +88,81 @@ def retrieve_sparql_query_template(query_hash):
     sparql_record_json = retrieve_sparql_query(query_hash)
     logger.debug(f"{sparql_record_json}")
     return render_template('sparql_interface/snippets/hash_query.html', query_hash=sparql_record_json)
+
+
+# LLM Feature
+
+# def init_prompt():
+#     with open(os.path.join(FEDORKG_PATH, 'prompt.txt'), 'r', encoding='utf-8') as prompt_file:
+#         return prompt_file.read()
+
+prompt = """
+You are an expert assistant that converts natural language questions into precise SPARQL queries for the NFDI4Chem Search Service. The underlying knowledge graph uses vocabularies such as DCAT, schema.org, and chemistry-specific identifiers (e.g., InChI, InChIKey, ChEBI, SMILES). Assume datasets are modeled as instances of dcat:Dataset and may contain metadata such as titles, descriptions, chemical identifiers, keywords, contributors, and access links. Do not explain. Only return a valid SPARQL query that directly answers the user's question, and without formatting like code blocks. 
+Instructions:
+- If the query uses a namespace prefix (like dcat:, schema:, dct:), always declare it at the top with PREFIX.
+- Only add PREFIXes that are needed for the specific query.
+- Return only the SPARQL query. No explanations, no formatting.
+Question:
+"""
+
+# OPENAI_API_KEY = "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"
+API_KEY_DEFAULT = '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'
+
+
+@sparql.route(u'/llm', methods=['GET','POST'])
+def llm():
+
+    question = request.values.get('question', None)
+    if question is None:
+        raise ValueError('ERROR: No question passed.')
+    elif len(question) > 128:
+        raise ValueError('ERROR: Your question exceeds 128 characters.')
+    else:
+        api_key = request.values.get('apikey', None)
+        logger.debug(f"THE API KEY {api_key}")
+        if api_key is None:
+            api_key=API_KEY_DEFAULT
+            # raise ValueError('ERROR: Missing OpenAI API key.')
+
+        client = openai.OpenAI(
+            base_url="https://api.groq.com/openai/v1",
+            api_key=api_key
+
+        )
+
+        chat_completion = client.chat.completions.create(
+            messages=[
+                {
+                    "role": "user",
+                    "content": f"{prompt}\n{question}",
+                }
+            ],
+            model="llama-3.3-70b-versatile",
+        )
+
+        # data = {
+        #     "model": "gpt-3.5-turbo",
+        #     "messages": [
+        #         {"role": "user", "content": f"{prompt}\n{question}"}
+        #     ]
+        # }
+
+
+        try:
+            response = chat_completion.choices[0].message.content
+            logger.debug(response)
+            content=response
+            return content
+
+        except requests.exceptions.HTTPError as http_err:
+            if response.status_code == 429:
+                return None
+            else:
+                raise RuntimeError(f"HTTP error occurred: {http_err}")
+        except Exception as err:
+            raise RuntimeError(f"An error occurred: {err}")
+
+
+
 
 

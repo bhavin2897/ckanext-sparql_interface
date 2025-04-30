@@ -1,6 +1,7 @@
 var $ = jQuery.noConflict();
 
 $(document).ready(function () {
+    var yasgui = null; // ✅ Declare globally to avoid multiple instances
     var editorCount = 0;
     var editors = {};
     var currentTabId = null;
@@ -36,12 +37,14 @@ $(document).ready(function () {
         const tabId = 'editor' + editorCount;
 
         // Clear the YASGUI container
-        $('#yasgui').empty(); // Clear the YASGUI container
+        if (!yasgui) {
+            $('#yasgui').empty(); // Optional: only on first creation
+            yasgui = new Yasgui(document.getElementById('yasgui'), {
+                requestConfig: { endpoint: "{{ h.sparql_endpoint_url() }}", endpointInput: false, method: "POST" },
+                showControlBar: false
+            });
+                }
 
-        let yasgui = new Yasgui(document.getElementById('yasgui'), {
-            requestConfig: { endpoint: "{{ h.sparql_endpoint_url() }}", endpointInput: false, method: "POST" },
-            showControlBar: false
-        });
 
         let tab = yasgui.addTab(true); // 'true' to activate the tab
         tab.setName(tabName); // Set the tab name
@@ -264,4 +267,55 @@ $(document).ready(function () {
             });
         }, 2000); // Keep it visible for 2 seconds
     }
+});
+
+// LLM Query JS
+const llm_form = document.getElementById("llm"),
+      loader = document.querySelector("#loading");
+
+llm_form.onsubmit = async function (event) {
+    event.preventDefault();
+    loader.classList.add("display");
+
+    let data = new FormData();
+    data.append("question", document.getElementById("question").value);
+//    data.append("apikey", document.getElementById("apikey").value);
+
+    try {
+        let response = await fetch("llm", { method: "POST", body: data });
+        let query = await response.text();
+
+        // let yasgui = new Yasgui(document.getElementById('yasgui'));
+        if (yasgui) {
+            $('#yasgui').empty();
+            yasgui = new Yasgui(document.getElementById('yasgui'), {
+                requestConfig: { endpoint: "{{ h.sparql_endpoint_url() }}", endpointInput: false, method: "POST" },
+                showControlBar: false
+            });
+            }
+//        else {
+//            let yasgui = new Yasgui(document.getElementById('yasgui'));
+//        }
+
+        let tab = yasgui.addTab(true);
+
+        tab.setName("LLM Query");
+        tab.setQuery(query);
+        tab.query();
+    } catch (err) {
+        console.error("Error submitting LLM request:", err);
+    } finally {
+        loader.classList.remove("display");
+    }
+};
+
+const question_elem = document.getElementById("question"),
+      submit_btn = document.getElementById("llm_submit"),
+      questions = document.querySelectorAll('.question');
+
+questions.forEach(el => {
+    el.addEventListener('click', () => {
+        question_elem.value = el.textContent || el.innerText;
+        submit_btn.click();
+    });
 });
