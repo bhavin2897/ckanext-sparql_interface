@@ -6,6 +6,7 @@ import time
 from flask import Blueprint, redirect, url_for, jsonify, render_template
 from datetime import datetime
 from ckan.plugins.toolkit import c, render, request
+import ckan.plugins.toolkit as tk
 import ckan.lib.helpers as h
 from ckanext.sparql_interface.utils import sparql_query_SPARQLWrapper as utils_sparqlQuery
 from ckanext.sparql_interface.models.query_hash import SparqlQueryHash as sparql_db_table
@@ -106,7 +107,8 @@ Question:
 """
 
 # OPENAI_API_KEY = "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"
-API_KEY_DEFAULT = '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'
+API_KEY_DEFAULT = tk.config.get('ckanext.sparql_interface.openai_api_key')
+logger.debug(API_KEY_DEFAULT)
 
 
 @sparql.route(u'/llm', methods=['GET','POST'])
@@ -122,7 +124,7 @@ def llm():
         logger.debug(f"THE API KEY {api_key}")
         if api_key is None:
             api_key=API_KEY_DEFAULT
-            # raise ValueError('ERROR: Missing OpenAI API key.')
+            logger.debug(f"Default API KEY {api_key}")
 
         client = openai.OpenAI(
             base_url="https://api.groq.com/openai/v1",
