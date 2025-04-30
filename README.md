@@ -37,6 +37,7 @@ To install ckanext-sparql_interface:
     cd ckanext-sparql_interface
     pip install -e .
 	pip install -r requirements.txt
+    pip install openai
     ```
 
 3. Add `sparql_interface` to the `ckan.plugins` setting in your CKAN

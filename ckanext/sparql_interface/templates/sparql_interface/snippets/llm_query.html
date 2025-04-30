@@ -1,0 +1,143 @@
+<style>
+    #content-wrap {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#details-llm summary {
+    font-size: 1.6rem;
+    color: #1f2937;
+    cursor: pointer;
+}
+
+#details-llm[open] summary {
+    color: rgb(0,156,188); /* Petrol highlight when open */
+}
+
+#details-llm {
+    border: none;
+    background: transparent;
+}
+
+#llm {
+    margin-top: 1.2rem;
+}
+
+#llm label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    color: #374151;
+}
+
+#apikey {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    outline: none;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s;
+}
+
+#apikey:focus {
+    border-color: rgb(0,156,188); /* Petrol border when focused */
+}
+
+#question {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    outline: none;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s;
+}
+
+#question:focus {
+    border-color: rgb(0,156,188); /* Petrol border when focused */
+}
+
+#llm_submit {
+    padding: 0.5rem 1.5rem;
+    background-color: grey;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#llm_submit:hover {
+    background-color: rgb(0,156,188);
+}
+
+#loading {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#loading::after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #3b82f6;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    visibility: hidden;
+}
+
+#loading.display::after {
+    visibility: visible;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+</style>
+
+
+<div class="mb-6 mt-6 mx-3" id="content-wrap">
+        <details class="mb-3" id="details-llm" open>
+            <summary class="font-bold"><i class="fa fa-flask" aria-hidden="true"></i>&nbsp;BETA: Ask4Chem - {% trans %}LLM-based Text to SPAQRL Answering{% endtrans %}</summary>
+            <div class="mb-3 py-2">
+                <p>Ask4Chem uses the LLM <i>llama-3.3-70b-versatile</i> from <a href="https://groq.com/" > Groq Inc. </a> </p>
+                <p> (The maximum number of characters is limited to 128 for tokenization reasons.) </p>
+
+                <p>Sample Questions to Ask4Chem: </p>
+
+                <ul>
+                    <li class="question">{% trans %}What are the datasets that contain the keyword "nuclear magnetic resonance" in the description of the dataset?{% endtrans %}</li>
+                    <li class="question">{% trans %}What are the resources that include the word "metadata" in the description of the resource?{% endtrans %}</li>
+                    <li class="question">{% trans %}What are the datasets with the title "Fenspiride"?{% endtrans %}</li>
+                </ul>
+
+
+                <form id="llm" method="post">
+
+<!--                    <label for="apikey" >GROQ API</label>-->
+<!--                    <input type="text" id="apikey" name="apikey" required autocomplete="off">-->
+
+                    <label for="question">{% trans %}Question{% endtrans %}</label>
+                    <input type="text" id="question" name="question" maxlength="136" required>
+                    <div style="display: contents">
+                        <div id="loading"></div>
+                        <input type="submit" id="llm_submit" value="{% trans %}Ask{% endtrans %}">
+                    </div>
+                </form>
+            </div>
+        </details>
+    </div>
