@@ -1,7 +1,7 @@
 # encoding: utf-8
 import requests
 import os
-import openai
+# import openai
 import time
 from flask import Blueprint, redirect, url_for, jsonify, render_template
 from datetime import datetime
@@ -106,9 +106,9 @@ Instructions:
 Question:
 """
 
-# OPENAI_API_KEY = "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"
-API_KEY_DEFAULT = tk.config.get('ckanext.sparql_interface.openai_api_key')
-logger.debug(API_KEY_DEFAULT)
+# # OPENAI_API_KEY = "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"
+# API_KEY_DEFAULT = tk.config.get('ckanext.sparql_interface.openai_api_key')
+# logger.debug(API_KEY_DEFAULT)
 
 
 @sparql.route(u'/llm', methods=['GET','POST'])
