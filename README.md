@@ -46,7 +46,7 @@ To install ckanext-sparql_interface:
    
 4. In order to let the English and other languajes profiles work, it is 
    absolutely mandatory to make the directory `/ckan/ckan/public/base/i18n`
-   writable by the ckan user. CKAN WILL NOT START IF YOU DON'T DO SO!
+   writable by the ckan user. Preferably, `www-data <ckan-user>` CKAN WILL NOT START IF YOU DON'T DO SO! 
    
 5. Add configuration to the CKAN configuration file as required. See below.
    
@@ -104,8 +104,8 @@ This is from GROQ Inc., which runs on a free API Tool. Its important that it is 
 - Version: 1.01: Fix Bugs 
 - Version: 2.0: Adapted to ckan 2.9 and internationalized
 - Version: 2.0.1: Minor fixes
-- Version: 2.1.0: Natural Language to SPAQRL Text
-
+- Version: 2.1.0: Natural Language to SPAQRL Text (TESTING ONLY)
+- Version: 2.2.0: Going to the production server without the LLM feature 
 Example
 =======
 
