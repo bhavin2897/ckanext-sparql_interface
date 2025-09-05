@@ -106,10 +106,7 @@ This is from GROQ Inc., which runs on a free API Tool. Its important that it is 
 - Version: 2.0.1: Minor fixes
 - Version: 2.1.0: Natural Language to SPAQRL Text (TESTING ONLY)
 - Version: 2.2.0: Going to the production server without the LLM feature 
-Example
-=======
 
-- http://data.upf.edu/sparql
 
 
 ToDos
